@@ -1,0 +1,43 @@
+const express = require('express')
+const router = express.Router()
+
+const userController = require('../controllers/userController.js')
+const cheeseController = require('../controllers/cheeseController')
+
+// **** user routes ****
+
+// get all users
+
+router.get('/', userController.index)
+
+// get one user by id
+
+router.get('/:id', userController.show)
+
+// create new user
+
+router.post('/', userController.create)
+
+// update a user
+
+router.put('/:id', userController.update)
+
+// delete a user
+
+router.delete('/:id', userController.delete)
+
+// **** cheese routes ****
+
+// get all cheeses 
+
+// router.get('/', userController.index)
+
+// get one cheese by id
+
+// create a new cheese
+
+// update a cheese
+
+// delete a cheese
+
+module.exports = router
