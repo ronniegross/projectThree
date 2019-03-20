@@ -12,7 +12,7 @@ router.get('/', userController.index)
 
 // get one user by id
 
-router.get('/:id', userController.show)
+router.get('/:userId', userController.show)
 
 // create new user
 
@@ -20,15 +20,17 @@ router.post('/', userController.create)
 
 // update a user
 
-router.put('/:id', userController.update)
+router.put('/:userId', userController.update)
 
 // delete a user
 
-router.delete('/:id', userController.delete)
+router.delete('/:userId', userController.delete)
 
 // **** cheese routes ****
 
 // get all cheeses 
+
+router.get('/cheeses', cheeseController.show)
 
 // router.get('/', userController.index)
 

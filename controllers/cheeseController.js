@@ -3,9 +3,12 @@ const router = express.Router()
 const Cheese = require('../models/Cheese.js')
 
 const cheeseController = {
-    index: async (req, res) => {
+
+    show: async (req, res) => {
         try {
-            const cheeses = await Cheese.find({})
+            const userId = req.params.id
+            const currentUser = await User.findById(userId)
+            const cheeses = currentUser.savedCheeses
             res.json(cheeses)
         } catch (err) {
             console.log(err)
