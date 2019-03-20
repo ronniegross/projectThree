@@ -6,8 +6,11 @@ const Cheese = new Schema ({
     type: String,
     hardness: String,
     price: Number,
+    region: String,
     purchaseLocation: String,
     wineParing: String,
     image: String,
     buyAgain: Boolean
 })
+
+module.exports = mongoose.model('Cheese', Cheese)
