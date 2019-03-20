@@ -1,4 +1,5 @@
 require('dotenv').config()
+const mongoose = require('mongoose')
 
 const User = require('../models/User.js')
 const Cheese = require('../models/Cheese.js')
@@ -38,3 +39,16 @@ User.remove({})
     .then(() => ronnie.save())
     .then(() => console.log('Successful Save'))
     .then(() => mongoose.connection.close())
+
+// const saved = async () => {
+//     await User.deleteMany()
+//     const ronnie = new User (ronnie)
+//     await ronnie.save()
+//     await Cheese.deleteMany()
+//     const chevre = new Cheese (chevre)
+//     await chevre.save()
+//     const manchego = new Cheese (manchego)
+//     await manchego.save()
+// }
+
+// saved()
