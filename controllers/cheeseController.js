@@ -36,16 +36,119 @@ const cheeseController = {
     create: async (req, res) => {
         const userId = req.params.userId
         User.findById(userId)
-        .then((user) => {
-            const cheeseData = req.body
-            Cheese.create(cheeseData)
-            .then((cheese) => {
-                user.savedCheeses.push(cheese)
-                user.save()
-                res.json(cheese)
+            .then((user) => {
+                const cheeseData = req.body
+                Cheese.create(cheeseData)
+                    .then((cheese) => {
+                        user.savedCheeses.push(cheese)
+                        user.save()
+                        res.json(cheese)
+                    })
             })
-        })
     },
+
+    // find the user by user id
+    // find the cheese id within the user
+    // take the body and update that to the cheese id
+
+    // update: async (req, res) => {
+    //     const userId = req.params.userId
+    //     User.findById(userId)
+    //         .then((user) => {
+    //             const cheeseId = req.params.cheeseId
+    //             const updatedCheeseData = req.body
+    //             Cheese.findByIdAndUpdate(cheeseId, updatedCheeseData)
+    //                 .then((cheese) => {
+    //                     user.savedCheeses.push(cheese)
+    //                     user.save()
+    //                     res.json(cheese)
+    //                 })
+    //         })
+    // },
+
+    // update: async (req, res) => {
+    //     const userId = req.params.userId
+    //     User.findById(userId)
+    //         .then((user) => {
+    //             user.savedCheeses.forEach(cheese, index => {
+    //                 if (cheese._id === req.params.cheeseId) {
+    //                     user.savedCheeses[index] = Cheese.create(req.body)
+    //                 }
+    //             })
+    //                 .then((cheese) => {
+    //                     user.savedCheeses.push(cheese)
+    //                     user.save()
+    //                     res.json(cheese)
+    //                 })
+    //         })
+    // },
+
+    // update: async (req, res) => {
+    //     const userId = req.params.userId
+    //     User.findById(userId)
+
+    //         .then((user) => {
+    //             const userCheeses = user.savedCheeses
+
+    //             // userCheeses.find(cheese => {
+    //             //     console.log("CHEESE",cheese._id)
+    //             // if (cheese._id === req.params.cheeseId) {
+    //             // user.savedCheeses = Cheese.create(req.body)
+    //             //     console.log("CHEESE",cheese)
+    //             // }
+
+    //             // })
+    //             const updatedCheese = userCheeses.filter((cheese) => {
+    //                 // console.log(cheese.id)
+    //                 return cheese.id === req.params.cheeseId
+    //             })
+    //             // console.log(updatedCheese[0])
+    //             user.savedCheeses.push(updatedCheese[0])
+    //             console.log(user.savedCheeses)
+
+    //             // .then((cheese) => {
+    //             //     user.savedCheeses.push(cheese)
+    //             //     user.save()
+    //             //     res.json(cheese)
+    //             // })
+    //         })
+
+
+    update: (req, res) => {
+        User.findById(req.params.userId)
+            .then(user => {
+                const updatedCheese = user.savedCheeses.id(req.params.cheeseId)
+                updatedCheese.set(req.body)
+                user.save()
+                res.json(updatedCheese)
+            }).catch((err) => {
+                console.log(err)
+            })
+    },
+
+
+
+    // update: async (req, res) => {
+    //     const userId = req.params.userId
+    //     User.findById(userId)
+    //     .then((user) => {
+    //         const cheeseId = req.params.cheeseId
+    //         .findById(cheeseId)
+    //         .then((cheese) => {
+    //             const updatedCheeseData = req.body
+    //             Cheese.findByIdAndUpdate(cheeseId, updatedCheeseData)
+    //             .then((cheese) => {
+    //                 cheese.savedCheeses.push(cheese)
+    //                 cheese.save()
+    //                 res.json(cheese)
+    //             })
+    //         })
+    //     })
+    // }
+}
+
+module.exports = cheeseController
+
 
     // create: async (req, res) => {
     //     try {
@@ -64,49 +167,3 @@ const cheeseController = {
     //         res.json(err)
     //     }
     // },
-
-    // update: async (req, res) => {
-    //     try {
-    //         const userId = req.params.id
-    //         const updatedUser = req.body
-    //         const savedUser = await User.findByIdAndUpdate(userId, updatedUser)
-    //         res.json(savedUser)
-    //     } catch(err) {
-    //         console.log(err)
-    //         res.status(500).json(err)
-    //     }
-    // },
-
-
-    // create: async (req, res) => {
-    //     const userId = req.params.userId
-    //     User.findById(userId)
-    //     .then((user) => {
-    //         const cheeseData = req.body
-    //         Cheese.create(cheeseData)
-    //         .then((cheese) => {
-    //             user.savedCheeses.push(cheese)
-    //             user.save()
-    //             res.json(cheese)
-    //         })
-    //     })
-    // },
-
-    // update: async (req, res) => {
-    //     // const userId = req.params.userId
-    //     // User.findById(userId)
-    //     const cheeseId = req.params.cheeseId
-    //     Cheese.findById(cheeseId)
-    //     .then((cheese) => {
-    //         const updatedCheeseData = req.body
-    //         Cheese.findByIdAndUpdate(cheeseId, updatedCheeseData)
-    //         .then((cheese) => {
-    //             cheese.savedCheeses.push(cheese)
-    //             cheese.save()
-    //             res.json(cheese)
-    //         })
-    //     })
-    // }
-}
-
-module.exports = cheeseController 
