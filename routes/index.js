@@ -30,15 +30,19 @@ router.delete('/:userId', userController.delete)
 
 // get all cheeses 
 
-router.get('/:userId/cheeses', cheeseController.show)
-
-// router.get('/', userController.index)
+router.get('/:userId/cheeses', cheeseController.index)
 
 // get one cheese by id
 
+router.get('/:userId/cheeses/:cheeseId', cheeseController.show)
+
 // create a new cheese
 
+router.post('/:userId/cheeses', cheeseController.create)
+
 // update a cheese
+
+// router.put('/:userId/cheeses/:cheeseId', cheeseController.update)
 
 // delete a cheese
 

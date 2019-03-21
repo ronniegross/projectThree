@@ -3,6 +3,7 @@ const router = express.Router()
 const User = require('../models/User.js')
 
 const userController = {
+
     index: async (req, res) => {
         try {
             const users = await User.find({})
@@ -11,6 +12,7 @@ const userController = {
             console.log(err)
         }
     }, 
+
     show: async (req, res) => {
         try {
             const userId = req.params.id
@@ -21,6 +23,7 @@ const userController = {
             res.json(err)
         }
     },
+
     create: async (req, res) => {
         try {
             const newUser = req.body
@@ -31,6 +34,7 @@ const userController = {
             res.json(err)
         }
     },
+
     update: async (req, res) => {
         try {
             const userId = req.params.id
@@ -42,6 +46,7 @@ const userController = {
             res.status(500).json(err)
         }
     },
+    
     delete: async (req, res) => {
         try {
             const userId = req.params.id
