@@ -46,4 +46,6 @@ router.put('/:userId/cheeses/:cheeseId', cheeseController.update)
 
 // delete a cheese
 
+router.delete('/:userId/cheeses/:cheeseId', cheeseController.delete)
+
 module.exports = router
