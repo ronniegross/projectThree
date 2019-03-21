@@ -1,13 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import Nav from './components/Nav'
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-          <div>hello butts</div>
-      </div>
-    );
-  }
+export default class App extends Component {
+    render() {
+        return (
+            <BrowserRouter>
+            {/* <h1>butts</h1> */}
+                <Switch>
+                    <Route exact path="/" component={Nav} />
+                </Switch>
+            </BrowserRouter>
+        )
+    }
 }
-
-export default App;
