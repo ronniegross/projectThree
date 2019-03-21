@@ -30,7 +30,7 @@ router.delete('/:userId', userController.delete)
 
 // get all cheeses 
 
-router.get('/cheeses', cheeseController.show)
+router.get('/:userId/cheeses', cheeseController.show)
 
 // router.get('/', userController.index)
 
