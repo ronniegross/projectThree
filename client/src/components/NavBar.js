@@ -10,7 +10,7 @@ class NavBar extends Component {
             <div>
                 <h1>nav bar</h1>
                 {/* <Link to={`${this.promsuserId}/cheeses`}>cheese list</Link> */}
-                <Link to={`$:userId/cheeses`}>cheese list</Link>
+                <Link to={`:userId/cheeses`}>cheese list</Link>
                 <Link to="/:id">account info</Link>
                 <Link to="/:userId/cheeses">add cheese</Link>
             </div>
