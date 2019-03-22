@@ -22,7 +22,7 @@ class CheeseList extends Component {
         if (this.props.match.params) {
             axios.get(`api/fromage/${this.props.match.params.userId}`)
                 .then(res => {
-                    console.log(res)
+                    // console.log(res)
                     this.setState({
                         user: {
                             _id: res.data._id,
@@ -45,7 +45,8 @@ class CheeseList extends Component {
                         return (
                             <div key={cheese._id}>
                                 <Link
-                                    to={`/${cheese._id}`}
+                                    // to={`/${cheese._id}`}
+                                    to={`api/fromage/${this.props.match.params.userId}/cheeses/${cheese._id}`}
                                 >
                                     {cheese.name}
                                 </Link>
