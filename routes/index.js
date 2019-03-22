@@ -12,7 +12,7 @@ router.get('/', userController.index)
 
 // get one user by id
 
-router.get('/:id', userController.show)
+router.get('/:userId', userController.show)
 
 // create new user
 

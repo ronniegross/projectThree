@@ -13,8 +13,8 @@ app.use(express.static(`${__dirname}/client/build`))
 //     res.send("hello world")
 // })
 
-// app.use('/api/fromage', routes)
-app.use('/', routes)
+app.use('/api/fromage', routes)
+// app.use('/', routes)
 app.get('/*', (req, res) => {
     res.sendFile(`${__dirname}/client/build/index.html`)
   })

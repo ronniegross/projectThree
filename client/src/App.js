@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import Nav from './components/Nav'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import NavBar from './components/NavBar.js'
+import CheeseList from './components/CheeseList.js'
 
 export default class App extends Component {
+
     render() {
         return (
-            <BrowserRouter>
-            {/* <h1>butts</h1> */}
-                <Switch>
-                    <Route exact path="/" component={Nav} />
-                </Switch>
-            </BrowserRouter>
+            <Router>
+                <div>
+                    <NavBar />
+                    <Switch>
+                        <Route exact path="/:userId" component={CheeseList} />
+                    </Switch>
+                </div>
+            </Router>
         )
     }
 }
