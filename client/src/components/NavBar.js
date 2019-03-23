@@ -6,7 +6,7 @@ import { Redirect, Link } from 'react-router-dom'
 
 class NavBar extends Component {
     render() {
-        console.log(this.props)
+        // console.log(this.props)
         return(
             <div>
                 <h1>nav bar</h1>
