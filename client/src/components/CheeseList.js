@@ -31,7 +31,7 @@ class CheeseList extends Component {
     render() {
         return (
             <div>
-                <NavBar />
+                {/* <NavBar /> */}
                 <h1>cheese list</h1>
                 {
                     this.state.user.savedCheeses.map(cheese => {

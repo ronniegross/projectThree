@@ -42,7 +42,7 @@ class SingleCheese extends Component {
         // display the one cheese on user where that cheese's id in the array on the user === this.props.match.params.cheeseId
         return (
             <div>
-                <NavBar />
+                {/* <NavBar /> */}
                 <h2>single cheese</h2>
                 {
                     this.state.user.savedCheeses.map(cheese => {

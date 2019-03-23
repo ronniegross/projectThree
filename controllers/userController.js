@@ -37,8 +37,9 @@ const userController = {
 
     update: async (req, res) => {
         try {
-            const userId = req.params.id
-            const updatedUser = req.body
+            const userId = req.body.user._id
+            console.log("I am a user id - " + userId);
+            const updatedUser = new User(req.body.user)
             const savedUser = await User.findByIdAndUpdate(userId, updatedUser)
             res.json(savedUser)
         } catch(err) {
