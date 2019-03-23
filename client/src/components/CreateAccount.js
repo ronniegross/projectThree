@@ -21,10 +21,8 @@ export default class CreateAccount extends Component {
     }
 
     createUser = () => {
-        console.log("yup")
         axios.post('/api/fromage', { user: this.state.createdUser })
             .then(res => {
-                console.log(res.data)
                 this.setState({ redirectToHome: true, createdUser: res.data })
             })
     }
@@ -34,28 +32,6 @@ export default class CreateAccount extends Component {
         this.createUser()
     }
 
-
-    // createUser = (event) => {
-    //     event.preventDefault()
-    //     axios
-    //         .post('/api/fromage', {
-    //             name: this.state.newCreature.name,
-    //             description: this.state.newCreature.description
-    //         })
-    //         .then(res => {
-    //             const creaturesList = [...this.state.creatures]
-    //             creaturesList.unshift(res.data)
-    //             this.setState({
-    //                 newCreature: {
-    //                     name: '',
-    //                     description: ''
-    //                 },
-    //                 isCreatureFormDisplayed: false,
-    //                 creatures: creaturesList
-    //             })
-    //         })
-    // }
-
     handleChange = (event) => {
         const clonedCreatedUser = { ...this.state.createdUser }
         clonedCreatedUser[event.target.name] = event.target.value
@@ -64,11 +40,9 @@ export default class CreateAccount extends Component {
 
 
     render() {
-        if (this.state.redirectToHome === true) {
-            console.log(this.state.createdUser.id)
-            // return (<Redirect to={`/user/${this.state.createdUser.id}/cheeses`} />)
+        if (this.state.redirectToHome === true && this.state.createdUser.id !== null){
+            return(<Redirect to={`/${this.state.createdUser._id}`} />)
         }
-        console.log("CREATED USERS BITCCCCCHHHH - ", this.state.createdUser);
         return (
             <div>
                 <h1>create account</h1>
@@ -80,7 +54,6 @@ export default class CreateAccount extends Component {
                         name="name"
                         onChange={this.handleChange}
                         value={this.state.createdUser.name}
-                        // value="name"
                     />
                     <label htmlFor="email">email</label>
                     <input
