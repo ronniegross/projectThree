@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
+import NavBar from './NavBar.js'
 import axios from 'axios'
 
 export default class CreateAccount extends Component {

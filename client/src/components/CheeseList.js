@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import SingleCheese from './SingleCheese.js'
+import NavBar from './NavBar.js'
 import axios from 'axios'
 
 class CheeseList extends Component {
@@ -30,6 +31,7 @@ class CheeseList extends Component {
     render() {
         return (
             <div>
+                <NavBar />
                 <h1>cheese list</h1>
                 {
                     this.state.user.savedCheeses.map(cheese => {

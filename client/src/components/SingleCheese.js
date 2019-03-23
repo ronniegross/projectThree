@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import NavBar from './NavBar.js'
 import axios from 'axios'
 
 class SingleCheese extends Component {
@@ -41,6 +42,7 @@ class SingleCheese extends Component {
         // display the one cheese on user where that cheese's id in the array on the user === this.props.match.params.cheeseId
         return (
             <div>
+                <NavBar />
                 <h2>single cheese</h2>
                 {
                     this.state.user.savedCheeses.map(cheese => {
