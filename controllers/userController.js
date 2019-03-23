@@ -26,7 +26,7 @@ const userController = {
 
     create: async (req, res) => {
         try {
-            const newUser = req.body
+            const newUser = new User(req.body.user)
             const savedUser = await User.create(newUser)
             res.json(savedUser)
         } catch(err) {

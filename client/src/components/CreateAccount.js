@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
 
 export default class CreateAccount extends Component {
@@ -9,7 +10,8 @@ export default class CreateAccount extends Component {
             password: '',
             savedCheeses: []
         },
-        createdUser: {}
+        createdUser: {},
+        redirectToHome: false
     }
 
     componentDidMount = () => {
@@ -19,11 +21,17 @@ export default class CreateAccount extends Component {
     }
 
     createUser = () => {
-        axios.post('/api/fromage', {user: this.state.user})
+        console.log("yup")
+        axios.post('/api/fromage', { user: this.state.createdUser })
             .then(res => {
                 console.log(res.data)
-                this.setState({createdUser: res.data})
+                this.setState({ redirectToHome: true, createdUser: res.data })
             })
+    }
+
+    handleSignUp = (event) => {
+        event.preventDefault()
+        this.createUser()
     }
 
 
@@ -49,41 +57,48 @@ export default class CreateAccount extends Component {
     // }
 
     handleChange = (event) => {
-        const clonedCreatedUser = {...this.state.createdUser}
+        const clonedCreatedUser = { ...this.state.createdUser }
         clonedCreatedUser[event.target.name] = event.target.value
-        this.setState({createdUser: clonedCreatedUser})
+        this.setState({ createdUser: clonedCreatedUser })
     }
 
+
     render() {
+        if (this.state.redirectToHome === true) {
+            console.log(this.state.createdUser.id)
+            // return (<Redirect to={`/user/${this.state.createdUser.id}/cheeses`} />)
+        }
+        console.log("CREATED USERS BITCCCCCHHHH - ", this.state.createdUser);
         return (
             <div>
                 <h1>create account</h1>
-                <form onSubmit={this.createUser}>
+                <form onSubmit={this.handleSignUp}>
                     <label htmlFor="name">name</label>
                     <input
                         id="name"
                         type="text"
                         name="name"
-                    // onChange={this.handleChange}
-                    // value={this.state.newCreature.name}
+                        onChange={this.handleChange}
+                        value={this.state.createdUser.name}
+                        // value="name"
                     />
-                    <label htmlFor="description">description</label>
+                    <label htmlFor="email">email</label>
                     <input
                         id="email"
                         type="text"
                         name="email"
-                    // onChange={this.handleChange}
-                    // value={this.state.newCreature.description}
+                        onChange={this.handleChange}
+                        value={this.state.createdUser.email}
                     />
                     <label htmlFor="password">password</label>
                     <input
                         id="password"
                         type="text"
                         name="password"
-                    // onChange={this.handleChange}
-                    // value={this.state.newCreature.description}
+                        onChange={this.handleChange}
+                        value={this.state.createdUser.password}
                     />
-                    <button>sign up</button>
+                    <button>create user</button>
                 </form>
             </div>
         )
