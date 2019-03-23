@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import NavBar from './NavBar.js'
+import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios'
 
 export default class UserAccount extends Component {
@@ -10,7 +11,7 @@ export default class UserAccount extends Component {
             password: '',
             savedCheeses: []
         },
-        // updatedUser: {},
+        redirectToSignUp: false
     }
 
     // currentUser = () => {
@@ -48,8 +49,18 @@ export default class UserAccount extends Component {
         this.setState({ user: clonedUser})
     }
 
+    deleteUser = (event) => {
+        event.preventDefault()
+        axios.delete(`/api/fromage/${this.props.match.params.userId}`).then(res => {
+            this.setState({redirectToSignUp: true})
+        })
+    } 
+
     render() {
-        console.log(this.props.match)
+        // console.log(this.props.match)
+        if (this.state.redirectToSignUp === true ) {
+            return(<Redirect to="/" />)
+        }
         return (
             <div>
                 {/* <NavBar /> */}
@@ -81,6 +92,7 @@ export default class UserAccount extends Component {
                     />
                     <button>update user information</button>
                 </form>
+                <button onClick={this.deleteUser}>delete user</button>
             </div>
         )
     }

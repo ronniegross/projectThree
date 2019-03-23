@@ -38,7 +38,7 @@ const userController = {
     update: async (req, res) => {
         try {
             const userId = req.body.user._id
-            console.log("I am a user id - " + userId);
+            // console.log("I am a user id - " + userId);
             const updatedUser = new User(req.body.user)
             const savedUser = await User.findByIdAndUpdate(userId, updatedUser)
             res.json(savedUser)
@@ -50,7 +50,8 @@ const userController = {
     
     delete: async (req, res) => {
         try {
-            const userId = req.params.id
+            // console.log(req.params)
+            const userId = req.params.userId
             await User.findByIdAndDelete(userId)
             res.json({
                 msg: 'User successfully deleted'
