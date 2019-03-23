@@ -63,7 +63,9 @@ export default class UserAccount extends Component {
         }
         return (
             <div>
-                {/* <NavBar /> */}
+                <NavBar 
+                    userId={this.props.match.params.userId}
+                />
                 <h1>user account page</h1>
                 <form onSubmit={this.handleUpdate}>
                     <label htmlFor="name">name</label>
