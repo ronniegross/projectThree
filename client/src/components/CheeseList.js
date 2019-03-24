@@ -13,15 +13,6 @@ class CheeseList extends Component {
         createdCheese: {}
     }
 
-    // cheeseName: String,
-    // type: String,
-    // hardness: String,
-    // price: Number,
-    // region: String,
-    // purchaseLocation: String,
-    // winePairing: String,
-    // image: String,
-    // buyAgain: Boolean
 
     componentDidMount = () => {
         if (this.props) {
@@ -41,36 +32,6 @@ class CheeseList extends Component {
         }
     }
 
-
-    // createUser = () => {
-    //     axios.post('/api/fromage', { user: this.state.createdUser })
-    //         .then(res => {
-    //             this.setState({ redirectToHome: true, createdUser: res.data })
-    //         })
-    // }
-
-    // #1
-    // createCheese = () => {
-    //     axios.post(`/api/fromage/${this.props.match.params.userId}/cheeses`, {savedCheeses : this.state.createdCheese})
-    //         .then(res => {
-    //             console.log(res.data)
-    //             this.setState({ createdCheese: res.data})
-    //         })
-
-    // }
-
-    // #3
-    // createCheese = () => {
-    //     const userId = this.props.match.params.userId
-    //     axios.post(`/api/fromage/${userId}/cheeses`).then(res => {
-    //         console.log(res)
-    //         const newCheesesCopy = [...this.state.newCheeses]
-    //         newCheesesCopy.unshift(res.data) //This will add the new Idea to the beginning of the array
-    //         this.setState({newCheeses: newCheesesCopy})
-    //     })
-    // }
-
-
     createCheese = () => {
         const userId = this.props.match.params.userId
         axios.post(`/api/fromage/${userId}/cheeses`, { newCheese: this.state.createdCheese })
@@ -78,27 +39,6 @@ class CheeseList extends Component {
                 this.setState({ newCheeses: res.data })
             })
     }
-
-    // #2
-    // createCheese = () => {
-    //     const userId = this.props.match.params.userId
-    //     axios.post(`/api/fromage/${userId}/cheeses`).then(res => {
-    //         const copyNewCheeses = [...this.state.newCheeses]
-    //         copyNewCheeses.unshift(res.data) //This will add the new cheese to the beginning of the array
-    //         console.log("i'm a copy of new cheeses",this.state.copyNewCheeses)
-    //         this.setState({ newCheeses: copyNewCheeses })
-    //         console.log("i'm a new cheese",this.state.newCheeses)
-    //     })
-    // }
-
-    // createIdea = () => {
-    //     const userId = this.props.match.params.userId
-    //     axios.post(`/api/users/${userId}/ideas`).then(res => {
-    //         const newIdeas = [...this.state.ideas]
-    //         newIdeas.unshift(res.data) //This will add the new Idea to the beginning of the array
-    //         this.setState({ideas: newIdeas})
-    //     })
-    // }
 
     handleCreateCheese = (event) => {
         event.preventDefault()
@@ -120,20 +60,6 @@ class CheeseList extends Component {
                     userId={this.props.match.params.userId}
                 />
                 <h1>cheese list</h1>
-                {/* {
-
-                    this.state.user.savedCheeses.map(cheese => {
-                        return (
-                            <div key={cheese._id}>
-                                <Link
-                                    to={`/${this.props.match.params.userId}/cheeses/${cheese._id}`}
-                                >
-                                    {cheese.cheeseName}
-                                </Link>
-                            </div>
-                        )
-                    })
-                } */}
                 {
 
                     this.state.user.savedCheeses.map(cheese => {
@@ -156,7 +82,7 @@ class CheeseList extends Component {
                         type="text"
                         name="cheeseName"
                         onChange={this.handleChange}
-                        value={this.state.createdCheese.name}
+                        value={this.state.createdCheese.cheeseName}
                     />
                     <label htmlFor="type">type</label>
                     <input
