@@ -10,13 +10,16 @@ class CheeseList extends Component {
             name: '',
             savedCheeses: []
         },
-        createdCheese: []
+        // createdCheese: [],
+        newCheeses: []
     }
 
     componentDidMount = () => {
-        if (this.props.match.params) {
+        if (this.props) {
+            // console.log(this.props.match.params)
             axios.get(`/api/fromage/${this.props.match.params.userId}`)
                 .then(res => {
+                    console.log(res)
                     this.setState({
                         user: {
                             _id: res.data._id,
@@ -37,13 +40,34 @@ class CheeseList extends Component {
     //         })
     // }
 
-    createCheese = () => {
-        axios.post(`/api/fromage/${this.props.match.params.userId}/cheeses`, {savedCheeses : this.state.createdCheese})
-            .then(res => {
-                this.setState({ createdCheese: res.data})
-            })
+    // #1
+    // createCheese = () => {
+    //     axios.post(`/api/fromage/${this.props.match.params.userId}/cheeses`, {savedCheeses : this.state.createdCheese})
+    //         .then(res => {
+    //             console.log(res.data)
+    //             this.setState({ createdCheese: res.data})
+    //         })
 
+    // }
+
+    createCheese = () => {
+        const userId = this.props.match.params.userId
+        axios.post(`/api/fromage/${userId}/cheeses`).then(res => {
+            const savedCheeses = [...this.state.newCheeses]
+            savedCheeses.unshift(res.data) //This will add the new cheese to the beginning of the array
+            this.setState({newCheeses: savedCheeses})
+            console.log(this.state.newCheeses)
+        })
     }
+
+    // createIdea = () => {
+    //     const userId = this.props.match.params.userId
+    //     axios.post(`/api/users/${userId}/ideas`).then(res => {
+    //         const newIdeas = [...this.state.ideas]
+    //         newIdeas.unshift(res.data) //This will add the new Idea to the beginning of the array
+    //         this.setState({ideas: newIdeas})
+    //     })
+    // }
 
     handleCreateCheese = (event) => {
         event.preventDefault()
@@ -56,22 +80,38 @@ class CheeseList extends Component {
         this.setState({ createdCheese: clonedCreatedCheese })
     }
 
+
     render() {
+        console.log(this.state)
         return (
             <div>
                 <NavBar
                     userId={this.props.match.params.userId}
                 />
                 <h1>cheese list</h1>
+                {
+
+                    this.state.user.savedCheeses.map(cheese => {
+                        return (
+                            <div key={cheese._id}>
+                                <Link
+                                    to={`/${this.props.match.params.userId}/cheeses/${cheese._id}`}
+                                >
+                                    {cheese.cheeseName}
+                                </Link>
+                            </div>
+                        )
+                    })
+                }
                 <form onSubmit={this.handleCreateCheese}>
                     <h2>create cheese</h2>
                     <label htmlFor="cheeseName">cheese name</label>
                     <input
-                        id="name"
+                        id="cheeseName"
                         type="text"
-                        name="name"
+                        name="cheeseName"
                         onChange={this.handleChange}
-                        value={this.state.createdCheese.name}
+                        value={this.state.newCheeses.name}
                     />
                     {/* <label htmlFor="type">type</label>
                     <input
@@ -139,19 +179,6 @@ class CheeseList extends Component {
                     /> */}
                     <button>add cheese</button>
                 </form>
-                {
-                    this.state.user.savedCheeses.map(cheese => {
-                        return (
-                            <div key={cheese._id}>
-                                <Link
-                                    to={`/${this.props.match.params.userId}/cheeses/${cheese._id}`}
-                                >
-                                    {cheese.name}
-                                </Link>
-                            </div>
-                        )
-                    })
-                }
             </div>
         )
     }

@@ -5,7 +5,7 @@ const User = require('../models/User.js')
 const Cheese = require('../models/Cheese.js')
 
 const chevre = new Cheese({
-    name: "Trader Joes Chevre",
+    cheeseName: "Trader Joes Chevre",
     type: "Goat",
     hardness: "Soft",
     price: 4.99,
@@ -17,7 +17,7 @@ const chevre = new Cheese({
 })
 
 const manchego = new Cheese({
-    name: "Manchego Aged 12 Months",
+    cheeseName: "Manchego Aged 12 Months",
     type: "Sheep",
     hardness: "Hard",
     price: 9.99,

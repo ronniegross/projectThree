@@ -15,6 +15,12 @@ export default class App extends Component {
         //     />
         // )
 
+        // const CheeseListComponent = () => (
+        //     <CheeseList 
+        //         cheeseInfo={this.props.match}
+        //     />
+        // )
+
         return (
             <Router>
                 <div>

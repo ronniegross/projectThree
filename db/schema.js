@@ -2,7 +2,7 @@ const mongoose = require('../db/connection.js')
 const Schema = mongoose.Schema
 
 const CheeseSchema = new Schema ({
-    name: String,
+    cheeseName: String,
     type: String,
     hardness: String,
     price: Number,
