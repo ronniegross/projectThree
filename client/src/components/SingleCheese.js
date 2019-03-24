@@ -50,9 +50,9 @@ class SingleCheese extends Component {
         // console.log(this.props);
         // console.log(this.state)
         // display the one cheese on user where that cheese's id in the array on the user === this.props.match.params.cheeseId
-        // if (this.state.redirectToSignUp === true ) {
-        //     return(<Redirect to=`/api/fromage/${this.props.match.params.userId}/cheeses` />)
-        // }
+        if (this.state.redirectToCheeseList === true ) {
+            return(<Redirect to={`/${this.props.match.params.userId}/cheeses`} />)
+        }
         return (
             <div>
                 {/* <NavBar /> */}
