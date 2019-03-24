@@ -8,7 +8,7 @@ class CheeseList extends Component {
     state = {
         user: {
             name: '',
-            savedCheeses: []
+            // savedCheeses: []
         },
         // createdCheese: [],
         newCheeses: []
@@ -19,7 +19,6 @@ class CheeseList extends Component {
             // console.log(this.props.match.params)
             axios.get(`/api/fromage/${this.props.match.params.userId}`)
                 .then(res => {
-                    console.log(res)
                     this.setState({
                         user: {
                             _id: res.data._id,
@@ -27,6 +26,7 @@ class CheeseList extends Component {
                             savedCheeses: res.data.savedCheeses,
                         }
                     })
+                    // console.log(res.data.savedCheeses)
                 })
 
         }
@@ -50,15 +50,37 @@ class CheeseList extends Component {
 
     // }
 
+    // #3
+    // createCheese = () => {
+    //     const userId = this.props.match.params.userId
+    //     axios.post(`/api/fromage/${userId}/cheeses`).then(res => {
+    //         console.log(res)
+    //         const newCheesesCopy = [...this.state.newCheeses]
+    //         newCheesesCopy.unshift(res.data) //This will add the new Idea to the beginning of the array
+    //         this.setState({newCheeses: newCheesesCopy})
+    //     })
+    // }
+
+
     createCheese = () => {
         const userId = this.props.match.params.userId
-        axios.post(`/api/fromage/${userId}/cheeses`).then(res => {
-            const savedCheeses = [...this.state.newCheeses]
-            savedCheeses.unshift(res.data) //This will add the new cheese to the beginning of the array
-            this.setState({newCheeses: savedCheeses})
-            console.log(this.state.newCheeses)
-        })
+        axios.post(`/api/fromage/${userId}/cheeses`, { newCheeses: this.state.newCheeses })
+            .then(res => {
+                this.setState({ newCheeses: res.data })
+            })
     }
+
+    // #2
+    // createCheese = () => {
+    //     const userId = this.props.match.params.userId
+    //     axios.post(`/api/fromage/${userId}/cheeses`).then(res => {
+    //         const copyNewCheeses = [...this.state.newCheeses]
+    //         copyNewCheeses.unshift(res.data) //This will add the new cheese to the beginning of the array
+    //         console.log("i'm a copy of new cheeses",this.state.copyNewCheeses)
+    //         this.setState({ newCheeses: copyNewCheeses })
+    //         console.log("i'm a new cheese",this.state.newCheeses)
+    //     })
+    // }
 
     // createIdea = () => {
     //     const userId = this.props.match.params.userId
@@ -82,16 +104,30 @@ class CheeseList extends Component {
 
 
     render() {
-        console.log(this.state)
+        // console.log(this.state)
         return (
             <div>
                 <NavBar
                     userId={this.props.match.params.userId}
                 />
                 <h1>cheese list</h1>
-                {
+                {/* {
 
                     this.state.user.savedCheeses.map(cheese => {
+                        return (
+                            <div key={cheese._id}>
+                                <Link
+                                    to={`/${this.props.match.params.userId}/cheeses/${cheese._id}`}
+                                >
+                                    {cheese.cheeseName}
+                                </Link>
+                            </div>
+                        )
+                    })
+                } */}
+                {
+
+                    this.state.newCheeses.map(cheese => {
                         return (
                             <div key={cheese._id}>
                                 <Link
