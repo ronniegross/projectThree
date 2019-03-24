@@ -36,7 +36,10 @@ class CheeseList extends Component {
         const userId = this.props.match.params.userId
         axios.post(`/api/fromage/${userId}/cheeses`, { newCheese: this.state.createdCheese })
             .then(res => {
-                this.setState({ newCheeses: res.data })
+                const clonedUser = { ...this.state.user}
+                clonedUser.savedCheeses.push(res.data)
+                this.setState( {user: clonedUser })
+                // this.setState({ newCheeses: res.data })
             })
     }
 

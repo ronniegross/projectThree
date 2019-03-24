@@ -10,9 +10,9 @@ class NavBar extends Component {
         return(
             <div>
                 <h1>nav bar</h1>
-                <Link to={`${this.props.userId}/cheeses`}>cheese list</Link>
-                <Link to={`/${this.props.userId}`}>account info</Link>
-                <Link to={`/${this.props.userId}/cheeses`}>add cheese</Link>
+                <Link to={`${this.props.userId}/cheeses`}> cheese list </Link>
+                <Link to={`/${this.props.userId}`}> account info </Link>
+                <Link to={`/${this.props.userId}/cheeses`}> add cheese </Link>
             </div>
         )
     }
