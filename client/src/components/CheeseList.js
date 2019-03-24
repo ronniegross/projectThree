@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 import SingleCheese from './SingleCheese.js'
 import NavBar from './NavBar.js'
 import axios from 'axios'
@@ -38,7 +38,8 @@ class CheeseList extends Component {
             .then(res => {
                 const clonedUser = { ...this.state.user}
                 clonedUser.savedCheeses.push(res.data)
-                this.setState( {user: clonedUser })
+                this.setState( {user: clonedUser, createdCheese: {}})
+                document.getElementById("cheese-form").reset()
                 // this.setState({ newCheeses: res.data })
             })
     }
@@ -57,6 +58,9 @@ class CheeseList extends Component {
 
     render() {
         // console.log(this.state)
+        // if (this.state.redirectToCheeseList === true) {
+        //     return (<Redirect to={`/${this.props.match.params.userId}/cheeses`} />)
+        // }
         return (
             <div>
                 <NavBar
@@ -77,15 +81,15 @@ class CheeseList extends Component {
                         )
                     })
                 }
-                <form onSubmit={this.handleCreateCheese}>
-                    <h2>create cheese</h2>
+                <form onSubmit={this.handleCreateCheese} id="cheese-form">
+                    <h2>add new cheese</h2>
                     <label htmlFor="cheeseName">cheese name</label>
                     <input
                         id="cheeseName"
                         type="text"
                         name="cheeseName"
                         onChange={this.handleChange}
-                        value={this.state.createdCheese.cheeseName}
+                        // value={this.state.createdCheese.cheeseName}
                     />
                     <label htmlFor="type">type</label>
                     <input
@@ -93,7 +97,7 @@ class CheeseList extends Component {
                         type="text"
                         name="type"
                         onChange={this.handleChange}
-                        value={this.state.createdCheese.type}
+                        // value={this.state.createdCheese.type}
                     />
                     <label htmlFor="hardness">hardness</label>
                     <input
@@ -101,7 +105,7 @@ class CheeseList extends Component {
                         type="text"
                         name="hardness"
                         onChange={this.handleChange}
-                        value={this.state.createdCheese.hardness}
+                        // value={this.state.createdCheese.hardness}
                     />
                     <label htmlFor="price">price</label>
                     <input
@@ -109,7 +113,7 @@ class CheeseList extends Component {
                         type="text"
                         name="price"
                         onChange={this.handleChange}
-                        value={this.state.createdCheese.price}
+                        // value={this.state.createdCheese.price}
                     />
                     <label htmlFor="region">region</label>
                     <input
@@ -117,7 +121,7 @@ class CheeseList extends Component {
                         type="text"
                         name="region"
                         onChange={this.handleChange}
-                        value={this.state.createdCheese.region}
+                        // value={this.state.createdCheese.region}
                     />
                     <label htmlFor="purchaseLocation">purchased at</label>
                     <input
@@ -125,7 +129,7 @@ class CheeseList extends Component {
                         type="text"
                         name="purchaseLocation"
                         onChange={this.handleChange}
-                        value={this.state.createdCheese.purchaseLocation}
+                        // value={this.state.createdCheese.purchaseLocation}
                     />
                     <label htmlFor="winePairing">paired with (drink)</label>
                     <input
@@ -133,7 +137,7 @@ class CheeseList extends Component {
                         type="text"
                         name="winePairing"
                         onChange={this.handleChange}
-                        value={this.state.createdCheese.winePairing}
+                        // value={this.state.createdCheese.winePairing}
                     />
                     <label htmlFor="image">image link</label>
                     <input
@@ -141,7 +145,7 @@ class CheeseList extends Component {
                         type="text"
                         name="image"
                         onChange={this.handleChange}
-                        value={this.state.createdCheese.image}
+                        // value={this.state.createdCheese.image}
                     />
                     <label htmlFor="buyAgain">buy again?</label>
                     <input
@@ -149,7 +153,7 @@ class CheeseList extends Component {
                         type="text"
                         name="buyAgain"
                         onChange={this.handleChange}
-                        value={this.state.createdCheese.buyAgain}
+                        // value={this.state.createdCheese.buyAgain}
                     />
                     <button>add cheese</button>
                 </form>
