@@ -10,10 +10,18 @@ class CheeseList extends Component {
             name: '',
             savedCheeses: []
         },
-        createdCheese: {
-            cheeseName: ""
-        }
+        createdCheese: {}
     }
+
+    // cheeseName: String,
+    // type: String,
+    // hardness: String,
+    // price: Number,
+    // region: String,
+    // purchaseLocation: String,
+    // winePairing: String,
+    // image: String,
+    // buyAgain: Boolean
 
     componentDidMount = () => {
         if (this.props) {
@@ -150,70 +158,70 @@ class CheeseList extends Component {
                         onChange={this.handleChange}
                         value={this.state.createdCheese.name}
                     />
-                    {/* <label htmlFor="type">type</label>
+                    <label htmlFor="type">type</label>
                     <input
                         id="type"
                         type="text"
                         name="type"
-                    // onChange={this.handleChange}
-                    // value={this.state.createdUser.email}
-                    /> */}
-                    {/* <label htmlFor="hardness">hardness</label>
+                        onChange={this.handleChange}
+                        value={this.state.createdCheese.type}
+                    />
+                    <label htmlFor="hardness">hardness</label>
                     <input
                         id="hardness"
                         type="text"
                         name="hardness"
-                    // onChange={this.handleChange}
-                    // value={this.state.createdUser.password}
+                        onChange={this.handleChange}
+                        value={this.state.createdCheese.hardness}
                     />
                     <label htmlFor="price">price</label>
                     <input
                         id="price"
                         type="text"
                         name="price"
-                        // onChange={this.handleChange}
-                        // value={this.state.createdUser.name}
+                        onChange={this.handleChange}
+                        value={this.state.createdCheese.price}
                     />
                     <label htmlFor="region">region</label>
                     <input
                         id="region"
                         type="text"
                         name="region"
-                        // onChange={this.handleChange}
-                        // value={this.state.createdUser.name}
-                    /> */}
-                    {/* <label htmlFor="purchaseLocation">purchased at</label>
+                        onChange={this.handleChange}
+                        value={this.state.createdCheese.region}
+                    />
+                    <label htmlFor="purchaseLocation">purchased at</label>
                     <input
                         id="purchaseLocation"
                         type="text"
                         name="purchaseLocation"
-                        // onChange={this.handleChange}
-                        // value={this.state.createdUser.name}
+                        onChange={this.handleChange}
+                        value={this.state.createdCheese.purchaseLocation}
                     />
                     <label htmlFor="winePairing">paired with (drink)</label>
                     <input
                         id="winePairing"
                         type="text"
                         name="winePairing"
-                        // onChange={this.handleChange}
-                        // value={this.state.createdUser.name}
+                        onChange={this.handleChange}
+                        value={this.state.createdCheese.winePairing}
                     />
                     <label htmlFor="image">image link</label>
                     <input
                         id="image"
                         type="text"
                         name="image"
-                        // onChange={this.handleChange}
-                        // value={this.state.createdUser.name}
+                        onChange={this.handleChange}
+                        value={this.state.createdCheese.image}
                     />
                     <label htmlFor="buyAgain">buy again?</label>
                     <input
                         id="buyAgain"
                         type="text"
                         name="buyAgain"
-                        // onChange={this.handleChange}
-                        // value={this.state.createdUser.name}
-                    /> */}
+                        onChange={this.handleChange}
+                        value={this.state.createdCheese.buyAgain}
+                    />
                     <button>add cheese</button>
                 </form>
             </div>
