@@ -37,13 +37,13 @@ const cheeseController = {
         const userId = req.params.userId
         User.findById(userId)
             .then((user) => {
-                const cheeseData = req.body
-                Cheese.create(cheeseData)
-                    .then((cheese) => {
-                        user.savedCheeses.push(cheese)
-                        user.save()
-                        res.json(cheese)
-                    })
+                const cheeseData = new Cheese(req.body.newCheese)
+                // Cheese.create(cheeseData)
+                // .then((cheese) => {
+                user.savedCheeses.push(cheeseData)
+                user.save()
+                res.json(cheeseData)
+                // })
             })
     },
 
@@ -61,16 +61,16 @@ const cheeseController = {
 
     delete: (req, res) => {
         User.findById(req.params.userId)
-          .then(user => {
-            const specificCheeses = user.savedCheeses.filter(cheese => cheese._id.toString() !== req.params.cheeseId)
-            user.savedCheeses = specificCheeses
-            user.save().then(user => {
-              res.json(user.savedCheeses)
+            .then(user => {
+                const specificCheeses = user.savedCheeses.filter(cheese => cheese._id.toString() !== req.params.cheeseId)
+                user.savedCheeses = specificCheeses
+                user.save().then(user => {
+                    res.json(user.savedCheeses)
+                })
+            }).catch((err) => {
+                console.log(err)
             })
-          }).catch((err) => {
-            console.log(err)
-          })
-      },
+    },
 }
 
 module.exports = cheeseController

@@ -8,10 +8,11 @@ class CheeseList extends Component {
     state = {
         user: {
             name: '',
-            // savedCheeses: []
+            savedCheeses: []
         },
-        // createdCheese: [],
-        newCheeses: []
+        createdCheese: {
+            cheeseName: ""
+        }
     }
 
     componentDidMount = () => {
@@ -64,7 +65,7 @@ class CheeseList extends Component {
 
     createCheese = () => {
         const userId = this.props.match.params.userId
-        axios.post(`/api/fromage/${userId}/cheeses`, { newCheeses: this.state.newCheeses })
+        axios.post(`/api/fromage/${userId}/cheeses`, { newCheese: this.state.createdCheese })
             .then(res => {
                 this.setState({ newCheeses: res.data })
             })
@@ -127,7 +128,7 @@ class CheeseList extends Component {
                 } */}
                 {
 
-                    this.state.newCheeses.map(cheese => {
+                    this.state.user.savedCheeses.map(cheese => {
                         return (
                             <div key={cheese._id}>
                                 <Link
@@ -147,7 +148,7 @@ class CheeseList extends Component {
                         type="text"
                         name="cheeseName"
                         onChange={this.handleChange}
-                        value={this.state.newCheeses.name}
+                        value={this.state.createdCheese.name}
                     />
                     {/* <label htmlFor="type">type</label>
                     <input
