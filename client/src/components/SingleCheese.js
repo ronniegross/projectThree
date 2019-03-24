@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import NavBar from './NavBar.js'
 import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios'
+import update from 'immutability-helper';
 
 class SingleCheese extends Component {
     state = {
         user: {
             name: '',
-            savedCheeses: []
+            savedCheese: {}
         },
+        savedCheese: {},
         redirectToCheeseList: false
     }
 
@@ -19,7 +21,7 @@ class SingleCheese extends Component {
     //             user: {
     //                 _id: res.data._id,
     //                 name: res.data.name,
-    //                 savedCheeses: res.data.savedCheeses,
+    //                 savedCheese: res.data.savedCheese,
     //             }
     //         })
     //     })
@@ -27,8 +29,6 @@ class SingleCheese extends Component {
 
     componentDidMount = () => {
         axios.get(`/api/fromage/${this.props.match.params.userId}`).then(res => {
-            // console.log(res.data)
-            // console.log(this.props)
             const singleCheese = res.data.savedCheeses.filter(cheese => {
                 return (
                     cheese._id === this.props.match.params.cheeseId
@@ -38,21 +38,29 @@ class SingleCheese extends Component {
                 user: {
                     _id: res.data._id,
                     name: res.data.name,
-                    savedCheeses: singleCheese,
+                    savedCheese: singleCheese[0],
                 }
             })
+            this.setState({ savedCheese: singleCheese[0] })
         })
     }
 
+    // handleChange = (event) => {
+    //     const clonedUser = { ...this.state }
+    //     clonedUser[event.target.name] = event.target.value
+    //     this.setState({ user: clonedUser})
+    // }
+
+
     handleChange = (event) => {
-        const clonedCheese = { ...this.state.user.savedCheeses }
+        const clonedCheese = { ...this.state.savedCheese }
         clonedCheese[event.target.name] = event.target.value
-        this.setState({ user: clonedCheese })
+        this.setState({ savedCheese: clonedCheese })
     }
 
     updateCheese = (event) => {
         event.preventDefault()
-        axios.put(`/api/fromage/${this.props.match.params.userId}/cheeses/${this.props.match.params.cheeseId}`, { savedCheeses: this.state.user.savedCheeses })
+        axios.put(`/api/fromage/${this.props.match.params.userId}/cheeses/${this.props.match.params.cheeseId}`, { savedCheese: this.state.savedCheese })
     }
 
     deleteCheese = (event) => {
@@ -64,19 +72,19 @@ class SingleCheese extends Component {
 
     render() {
         // console.log(this.props);
-        // console.log(this.state)
+        // console.log(this.state.savedCheese)
         // display the one cheese on user where that cheese's id in the array on the user === this.props.match.params.cheeseId
         if (this.state.redirectToCheeseList === true) {
             return (<Redirect to={`/${this.props.match.params.userId}/cheeses`} />)
         }
         return (
             <div>
-                {this.state.user.savedCheeses.length > 0 ?
+                {this.state.savedCheese.cheeseName != null ?
                     <div>
                         {/* <NavBar /> */}
                         <h2>single cheese</h2>
-                        {
-                            this.state.user.savedCheeses.map(cheese => {
+                        {/* {
+                            this.state.savedCheese.map(cheese => {
                                 if (cheese._id === this.props.match.params.cheeseId) {
                                     return (
                                         <div>
@@ -93,10 +101,10 @@ class SingleCheese extends Component {
                                     )
                                 }
                             })
-                        }
+                        } */}
                         <button onClick={this.deleteCheese}>delete cheese</button>
                         <h2>edit cheese</h2>
-                        <form onSubmit={this.UpdateCheese}>
+                        <form onSubmit={this.updateCheese}>
                             <h2>edit current cheese</h2>
                             <label htmlFor="cheeseName">cheese name</label>
                             <input
@@ -104,7 +112,7 @@ class SingleCheese extends Component {
                                 type="text"
                                 name="cheeseName"
                                 onChange={this.handleChange}
-                                value={this.state.user.savedCheeses[0].cheeseName}
+                                value={this.state.savedCheese.cheeseName}
                             />
                             <label htmlFor="type">type</label>
                             <input
@@ -112,7 +120,7 @@ class SingleCheese extends Component {
                                 type="text"
                                 name="type"
                                 onChange={this.handleChange}
-                            // value={this.state.createdCheese.type}
+                                value={this.state.savedCheese.type}
                             />
                             <label htmlFor="hardness">hardness</label>
                             <input
@@ -120,7 +128,7 @@ class SingleCheese extends Component {
                                 type="text"
                                 name="hardness"
                                 onChange={this.handleChange}
-                            // value={this.state.createdCheese.hardness}
+                                value={this.state.savedCheese.hardness}
                             />
                             <label htmlFor="price">price</label>
                             <input
@@ -128,7 +136,7 @@ class SingleCheese extends Component {
                                 type="text"
                                 name="price"
                                 onChange={this.handleChange}
-                            // value={this.state.createdCheese.price}
+                                value={this.state.savedCheese.price}
                             />
                             <label htmlFor="region">region</label>
                             <input
@@ -136,7 +144,7 @@ class SingleCheese extends Component {
                                 type="text"
                                 name="region"
                                 onChange={this.handleChange}
-                            // value={this.state.createdCheese.region}
+                                value={this.state.savedCheese.region}
                             />
                             <label htmlFor="purchaseLocation">purchased at</label>
                             <input
@@ -144,7 +152,7 @@ class SingleCheese extends Component {
                                 type="text"
                                 name="purchaseLocation"
                                 onChange={this.handleChange}
-                            // value={this.state.createdCheese.purchaseLocation}
+                                value={this.state.savedCheese.purchaseLocation}
                             />
                             <label htmlFor="winePairing">paired with (drink)</label>
                             <input
@@ -152,7 +160,7 @@ class SingleCheese extends Component {
                                 type="text"
                                 name="winePairing"
                                 onChange={this.handleChange}
-                            // value={this.state.createdCheese.winePairing}
+                                value={this.state.savedCheese.winePairing}
                             />
                             <label htmlFor="image">image link</label>
                             <input
@@ -160,7 +168,7 @@ class SingleCheese extends Component {
                                 type="text"
                                 name="image"
                                 onChange={this.handleChange}
-                            // value={this.state.createdCheese.image}
+                                value={this.state.savedCheese.image}
                             />
                             <label htmlFor="buyAgain">buy again?</label>
                             <input
@@ -168,11 +176,10 @@ class SingleCheese extends Component {
                                 type="text"
                                 name="buyAgain"
                                 onChange={this.handleChange}
-                            // value={this.state.createdCheese.buyAgain}
+                                value={this.state.savedCheese.buyAgain}
                             />
                             <button>update cheese</button>
                         </form>
-
                     </div>
                     : null
                 }

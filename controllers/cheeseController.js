@@ -48,12 +48,19 @@ const cheeseController = {
     },
 
     update: (req, res) => {
+        // console.log(req.params.cheeseId)
         User.findById(req.params.userId)
             .then(user => {
-                const updatedCheese = user.savedCheeses.id(req.params.cheeseId)
-                updatedCheese.set(req.body)
+                // console.log(user)
+                // const updatedCheese = user.savedCheeses.filter(cheese => cheese._id.toString() === req.params.cheeseId)
+                // console.log(updatedCheese)
+
+                const indexOfCheeseToReplace = user.savedCheeses.findIndex((cheese) => {
+                    return cheese._id == req.params.cheeseId
+                })
+                user.savedCheeses[indexOfCheeseToReplace] = req.body.savedCheese
                 user.save()
-                res.json(updatedCheese)
+                res.json(user.savedCheeses[indexOfCheeseToReplace])
             }).catch((err) => {
                 console.log(err)
             })
