@@ -33,6 +33,6 @@ None, I learned an important lesson with my last project and wanted to go strict
 * Axios
 * Sketch
 ## Version 2
-* I would create high fidelity mockups and use Styled-Components to code those designs. 
+* I would create high fidelity mockups and use Styled-Components to code those designs
 * I would add custom icons to the radio buttons
 * Add functionality that would display a default cheese picture if the user did not imput a cheese image link
