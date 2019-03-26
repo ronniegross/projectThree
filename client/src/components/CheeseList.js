@@ -5,7 +5,20 @@ import NavBar from './NavBar.js'
 import axios from 'axios'
 import styled from 'styled-components'
 
-const Wrapper = styled.div`
+const TotalWrapper = styled.div`
+    .logoBox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+   .fromageLogo {
+       width: 250px;
+       margin: 25px;
+       justify-content: center;
+   }
+`
+
+const ContentWrapper = styled.div`
     /* width: 80%; */
     margin: 0 0 40px 40px;
     .btn {
@@ -85,155 +98,160 @@ class CheeseList extends Component {
         // }
         return (
             <div>
-                <NavBar
-                    userId={this.props.match.params.userId}
-                />
-                <Wrapper>
-                    <h3>cheese list</h3>
-                    {
+                <TotalWrapper>
+                    <div className="logoBox">
+                        <img src="https://i.imgur.com/srOPLeg.png" alt="fromage" className="fromageLogo"></img>
+                    </div>
+                    <NavBar
+                        userId={this.props.match.params.userId}
+                    />
+                    <ContentWrapper>
+                        <h3>cheese list</h3>
+                        {
 
-                        this.state.user.savedCheeses.map(cheese => {
-                            return (
-                                <div key={cheese._id}>
-                                    <Link
-                                        to={`/${this.props.match.params.userId}/cheeses/${cheese._id}`}
-                                    >
-                                        {cheese.cheeseName}
-                                    </Link>
+                            this.state.user.savedCheeses.map(cheese => {
+                                return (
+                                    <div key={cheese._id}>
+                                        <Link
+                                            to={`/${this.props.match.params.userId}/cheeses/${cheese._id}`}
+                                        >
+                                            {cheese.cheeseName}
+                                        </Link>
+                                    </div>
+                                )
+                            })
+                        }
+                        <form onSubmit={this.handleCreateCheese} id="cheese-form">
+                            <h3>add new cheese</h3>
+                            <div className="row">
+                                <div className="activeInput col s6">
+                                    <label htmlFor="cheeseName">cheese name</label>
+                                    <input
+                                        id="cheeseName"
+                                        type="text"
+                                        name="cheeseName"
+                                        onChange={this.handleChange}
+                                    // value={this.state.createdCheese.cheeseName}
+                                    />
                                 </div>
-                            )
-                        })
-                    }
-                    <form onSubmit={this.handleCreateCheese} id="cheese-form">
-                        <h3>add new cheese</h3>
-                        <div className="row">
-                            <div className="activeInput col s6">
-                                <label htmlFor="cheeseName">cheese name</label>
-                                <input
-                                    id="cheeseName"
-                                    type="text"
-                                    name="cheeseName"
-                                    onChange={this.handleChange}
-                                // value={this.state.createdCheese.cheeseName}
-                                />
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="activeInput col s6">
-                                <label htmlFor="type">type</label>
-                                <input
-                                    id="type"
-                                    type="text"
-                                    name="type"
-                                    onChange={this.handleChange}
-                                // value={this.state.createdCheese.type}
-                                />
                             </div>
 
-                        </div>
+                            <div className="row">
+                                <div className="activeInput col s6">
+                                    <label htmlFor="type">type</label>
+                                    <input
+                                        id="type"
+                                        type="text"
+                                        name="type"
+                                        onChange={this.handleChange}
+                                    // value={this.state.createdCheese.type}
+                                    />
+                                </div>
 
-                        <div className="row">
-                            <div className="activeInput col s6">
-                                <label htmlFor="hardness">hardness</label>
-                                <input
-                                    id="hardness"
-                                    type="text"
-                                    name="hardness"
-                                    onChange={this.handleChange}
-                                // value={this.state.createdCheese.hardness}
-                                />
                             </div>
 
-                        </div>
+                            <div className="row">
+                                <div className="activeInput col s6">
+                                    <label htmlFor="hardness">hardness</label>
+                                    <input
+                                        id="hardness"
+                                        type="text"
+                                        name="hardness"
+                                        onChange={this.handleChange}
+                                    // value={this.state.createdCheese.hardness}
+                                    />
+                                </div>
 
-                        <div className="row">
-                            <div className="activeInput col s6">
-                                <label htmlFor="price">price</label>
-                                <input
-                                    id="price"
-                                    type="text"
-                                    name="price"
-                                    onChange={this.handleChange}
-                                // value={this.state.createdCheese.price}
-                                />
                             </div>
 
-                        </div>
+                            <div className="row">
+                                <div className="activeInput col s6">
+                                    <label htmlFor="price">price</label>
+                                    <input
+                                        id="price"
+                                        type="text"
+                                        name="price"
+                                        onChange={this.handleChange}
+                                    // value={this.state.createdCheese.price}
+                                    />
+                                </div>
 
-                        <div className="row">
-                            <div className="activeInput col s6">
-                                <label htmlFor="region">region</label>
-                                <input
-                                    id="region"
-                                    type="text"
-                                    name="region"
-                                    onChange={this.handleChange}
-                                // value={this.state.createdCheese.region}
-                                />
                             </div>
 
-                        </div>
+                            <div className="row">
+                                <div className="activeInput col s6">
+                                    <label htmlFor="region">region</label>
+                                    <input
+                                        id="region"
+                                        type="text"
+                                        name="region"
+                                        onChange={this.handleChange}
+                                    // value={this.state.createdCheese.region}
+                                    />
+                                </div>
 
-                        <div className="row">
-                            <div className="activeInput col s6">
-                                <label htmlFor="purchaseLocation">purchased at</label>
-                                <input
-                                    id="purchaseLocation"
-                                    type="text"
-                                    name="purchaseLocation"
-                                    onChange={this.handleChange}
-                                // value={this.state.createdCheese.purchaseLocation}
-                                />
                             </div>
 
-                        </div>
+                            <div className="row">
+                                <div className="activeInput col s6">
+                                    <label htmlFor="purchaseLocation">purchased at</label>
+                                    <input
+                                        id="purchaseLocation"
+                                        type="text"
+                                        name="purchaseLocation"
+                                        onChange={this.handleChange}
+                                    // value={this.state.createdCheese.purchaseLocation}
+                                    />
+                                </div>
 
-                        <div className="row">
-                            <div className="activeInput col s6">
-                                <label htmlFor="winePairing">paired with (drink)</label>
-                                <input
-                                    id="winePairing"
-                                    type="text"
-                                    name="winePairing"
-                                    onChange={this.handleChange}
-                                // value={this.state.createdCheese.winePairing}
-                                />
                             </div>
 
-                        </div>
+                            <div className="row">
+                                <div className="activeInput col s6">
+                                    <label htmlFor="winePairing">paired with (drink)</label>
+                                    <input
+                                        id="winePairing"
+                                        type="text"
+                                        name="winePairing"
+                                        onChange={this.handleChange}
+                                    // value={this.state.createdCheese.winePairing}
+                                    />
+                                </div>
 
-                        <div className="row">
-                            <div className="activeInput col s6">
-                                <label htmlFor="image">image link</label>
-                                <input
-                                    id="image"
-                                    type="text"
-                                    name="image"
-                                    onChange={this.handleChange}
-                                // value={this.state.createdCheese.image}
-                                />
                             </div>
 
-                        </div>
+                            <div className="row">
+                                <div className="activeInput col s6">
+                                    <label htmlFor="image">image link</label>
+                                    <input
+                                        id="image"
+                                        type="text"
+                                        name="image"
+                                        onChange={this.handleChange}
+                                    // value={this.state.createdCheese.image}
+                                    />
+                                </div>
 
-                        <div className="row">
-                            <div className="activeInput col s6">
-                                <label htmlFor="buyAgain">buy again?</label>
-                                <input
-                                    id="buyAgain"
-                                    type="text"
-                                    name="buyAgain"
-                                    onChange={this.handleChange}
-                                // value={this.state.createdCheese.buyAgain}
-                                />
                             </div>
 
-                        </div>
+                            <div className="row">
+                                <div className="activeInput col s6">
+                                    <label htmlFor="buyAgain">buy again?</label>
+                                    <input
+                                        id="buyAgain"
+                                        type="text"
+                                        name="buyAgain"
+                                        onChange={this.handleChange}
+                                    // value={this.state.createdCheese.buyAgain}
+                                    />
+                                </div>
 
-                        <button className="btn waves-effect waves-light" type="submit" name="action">add cheese</button>
-                    </form>
-                </Wrapper>
+                            </div>
+
+                            <button className="btn waves-effect waves-light" type="submit" name="action">add cheese</button>
+                        </form>
+                    </ContentWrapper>
+                </TotalWrapper>
             </div>
         )
     }

@@ -3,7 +3,19 @@ import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 
-const Wrapper = styled.div`
+const TotalWrapper = styled.div`
+    .logoBox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+   .fromageLogo {
+       width: 250px;
+       margin-top: 30px;
+   }
+`
+
+const ContentWrapper = styled.div`
     /* width: 80%; */
     margin: 0 0 40px 40px;
     display: flex;
@@ -27,10 +39,6 @@ const Wrapper = styled.div`
    /* .waves-effect.waves-teal .waves-ripple {
         background-color: white;
    } */
-   .fromageLogo {
-       width: 200px;
-       margin-top: 30px;
-   }
 `
 
 export default class CreateAccount extends Component {
@@ -75,54 +83,56 @@ export default class CreateAccount extends Component {
             return (<Redirect to={`/${this.state.createdUser._id}`} />)
         }
         return (
-            <Wrapper>
-                <div>
+            <TotalWrapper>
+                <div className="logoBox">
                     <img src="https://i.imgur.com/srOPLeg.png" alt="fromage" class="fromageLogo"></img>
                 </div>
-                {/* <div class="row"> */}
-                <div>
-                    <h3>create account</h3>
-                    <form onSubmit={this.handleSignUp}>
-                        <div className="row">
-                            <div className="input-field col s6">
-                                <label htmlFor="name">name</label>
-                                <input
-                                    id="name"
-                                    type="text"
-                                    name="name"
-                                    onChange={this.handleChange}
-                                    value={this.state.createdUser.name}
-                                />
+                <ContentWrapper>
+                    {/* <div class="row"> */}
+                    <div>
+                        <h3>create account</h3>
+                        <form onSubmit={this.handleSignUp}>
+                            <div className="row">
+                                <div className="input-field col s6">
+                                    <label htmlFor="name">name</label>
+                                    <input
+                                        id="name"
+                                        type="text"
+                                        name="name"
+                                        onChange={this.handleChange}
+                                        value={this.state.createdUser.name}
+                                    />
+                                </div>
                             </div>
-                        </div>
-                        <div className="row">
-                            <div className="input-field col s6">
-                                <label htmlFor="email">email</label>
-                                <input
-                                    id="email"
-                                    type="text"
-                                    name="email"
-                                    onChange={this.handleChange}
-                                    value={this.state.createdUser.email}
-                                />
+                            <div className="row">
+                                <div className="input-field col s6">
+                                    <label htmlFor="email">email</label>
+                                    <input
+                                        id="email"
+                                        type="text"
+                                        name="email"
+                                        onChange={this.handleChange}
+                                        value={this.state.createdUser.email}
+                                    />
+                                </div>
                             </div>
-                        </div>
-                        <div className="row">
-                            <div className="input-field col s6">
-                                <label htmlFor="password">password</label>
-                                <input
-                                    id="password"
-                                    type="text"
-                                    name="password"
-                                    onChange={this.handleChange}
-                                    value={this.state.createdUser.password}
-                                />
+                            <div className="row">
+                                <div className="input-field col s6">
+                                    <label htmlFor="password">password</label>
+                                    <input
+                                        id="password"
+                                        type="text"
+                                        name="password"
+                                        onChange={this.handleChange}
+                                        value={this.state.createdUser.password}
+                                    />
+                                </div>
                             </div>
-                        </div>
-                        <button className="btn waves-effect waves-light" type="submit" name="action">create user</button>
-                    </form>
-                </div>
-            </Wrapper>
+                            <button className="btn waves-effect waves-light" type="submit" name="action">create user</button>
+                        </form>
+                    </div>
+                </ContentWrapper>
+            </TotalWrapper>
         )
     }
 }

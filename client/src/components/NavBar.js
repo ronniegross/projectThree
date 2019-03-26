@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 
 class NavBar extends Component {
     render() {
-        // console.log(this.props)
+        console.log(this.props)
         return (
             <div>
                 <Wrapper>
@@ -26,7 +26,7 @@ class NavBar extends Component {
                         <div className="nav-wrapper">
                             {/* <a href="#" class="brand-logo right">Logo</a> */}
                             <ul id="nav-mobile" className="left hide-on-med-and-down">
-                                <li><Link to={`${this.props.userId}/cheeses`}> cheese list </Link></li>
+                                <li><Link to={`/${this.props.userId}/cheeses`}> cheese list </Link></li>
                                 <li><Link to={`/${this.props.userId}`}> account info </Link></li>
                                 {/* <li><Link to={`/${this.props.userId}/cheeses`}> add new cheese </Link></li> */}
                             </ul>

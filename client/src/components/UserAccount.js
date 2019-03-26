@@ -5,7 +5,7 @@ import axios from 'axios'
 import styled from 'styled-components'
 
 
-const Wrapper = styled.div`
+const ContentWrapper = styled.div`
     /* width: 80%; */
     margin: 0 0 40px 40px;
     .btn {
@@ -19,6 +19,20 @@ const Wrapper = styled.div`
     .activeInput input[type=text]:focus {
         border-bottom: 1px solid #FEFFA6;
         box-shadow: 0 1px 0 0 #FEFFA6;
+   }
+
+`
+
+const TotalWrapper = styled.div`
+    .logoBox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+   .fromageLogo {
+       width: 250px;
+       margin: 25px;
+       justify-content: center;
    }
 `
 
@@ -83,55 +97,60 @@ export default class UserAccount extends Component {
         }
         return (
             <div>
-                <NavBar
-                    userId={this.props.match.params.userId}
-                />
-                <Wrapper>
-                    <div>
+                <TotalWrapper>
+                        <div className="logoBox">
+                            <img src="https://i.imgur.com/srOPLeg.png" alt="fromage" className="fromageLogo"></img>
+                        </div>
+                    <NavBar
+                        userId={this.props.match.params.userId}
+                    />
+                    <ContentWrapper>
+                        <div>
 
-                        <h3>user account page</h3>
-                        <form onSubmit={this.handleUpdate}>
-                            <div className="row">
-                                <div className="activeInput col s6">
-                                    <label htmlFor="name">name</label>
-                                    <input
-                                        id="name"
-                                        type="text"
-                                        name="name"
-                                        onChange={this.handleChange}
-                                        value={this.state.user.name}
-                                    />
+                            <h3>user account page</h3>
+                            <form onSubmit={this.handleUpdate}>
+                                <div className="row">
+                                    <div className="activeInput col s6">
+                                        <label htmlFor="name">name</label>
+                                        <input
+                                            id="name"
+                                            type="text"
+                                            name="name"
+                                            onChange={this.handleChange}
+                                            value={this.state.user.name}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="row">
-                                <div className="activeInput col s6">
-                                    <label htmlFor="email">email</label>
-                                    <input
-                                        id="email"
-                                        type="text"
-                                        name="email"
-                                        onChange={this.handleChange}
-                                        value={this.state.user.email}
-                                    />
+                                <div className="row">
+                                    <div className="activeInput col s6">
+                                        <label htmlFor="email">email</label>
+                                        <input
+                                            id="email"
+                                            type="text"
+                                            name="email"
+                                            onChange={this.handleChange}
+                                            value={this.state.user.email}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="row">
-                                <div className="activeInput col s6">
-                                    <label htmlFor="password">password</label>
-                                    <input
-                                        id="password"
-                                        type="text"
-                                        name="password"
-                                        onChange={this.handleChange}
-                                        value={this.state.user.password}
-                                    />
+                                <div className="row">
+                                    <div className="activeInput col s6">
+                                        <label htmlFor="password">password</label>
+                                        <input
+                                            id="password"
+                                            type="text"
+                                            name="password"
+                                            onChange={this.handleChange}
+                                            value={this.state.user.password}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                            <button className="btn waves-effect waves-light" type="submit" name="action">update user information</button>
-                        </form>
-                        <button className="btn waves-effect waves-light delete" type="submit" name="action" onClick={this.deleteUser}>delete user</button>
-                    </div>
-                </Wrapper>
+                                <button className="btn waves-effect waves-light" type="submit" name="action">update user information</button>
+                            </form>
+                            <button className="btn waves-effect waves-light delete" type="submit" name="action" onClick={this.deleteUser}>delete user</button>
+                        </div>
+                    </ContentWrapper>
+                </TotalWrapper>
             </div>
 
         )
