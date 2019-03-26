@@ -135,16 +135,15 @@ class CheeseList extends Component {
                                     />
                                 </div>
                             </div>
-
                             <div className="row">
                                 <div className="activeInput col s6">
-                                <label htmlFor="type">type</label>
+                                    <label htmlFor="type">type</label>
                                     <p>
                                         <label>
-                                            <input 
-                                                name="type" 
-                                                type="radio"        
-                                                value="cow"      
+                                            <input
+                                                name="type"
+                                                type="radio"
+                                                value="cow"
                                                 // checked={this.state.savedCheese.buyAgain === "yes"}
                                                 onChange={this.handleChange}
                                             />
@@ -153,10 +152,10 @@ class CheeseList extends Component {
                                     </p>
                                     <p>
                                         <label>
-                                            <input 
-                                                name="type" 
-                                                type="radio" 
-                                                value="goat"  
+                                            <input
+                                                name="type"
+                                                type="radio"
+                                                value="goat"
                                                 // checked={this.state.savedCheese.buyAgain === "no"}
                                                 onChange={this.handleChange}
                                             />
@@ -165,10 +164,10 @@ class CheeseList extends Component {
                                     </p>
                                     <p>
                                         <label>
-                                            <input 
-                                                name="type" 
-                                                type="radio" 
-                                                value="sheep"  
+                                            <input
+                                                name="type"
+                                                type="radio"
+                                                value="sheep"
                                                 // checked={this.state.savedCheese.buyAgain === "no"}
                                                 onChange={this.handleChange}
                                             />
@@ -177,10 +176,10 @@ class CheeseList extends Component {
                                     </p>
                                     <p>
                                         <label>
-                                            <input 
-                                                name="type" 
-                                                type="radio" 
-                                                value="other"  
+                                            <input
+                                                name="type"
+                                                type="radio"
+                                                value="other"
                                                 // checked={this.state.savedCheese.buyAgain === "no"}
                                                 onChange={this.handleChange}
                                             />
@@ -189,7 +188,6 @@ class CheeseList extends Component {
                                     </p>
                                 </div>
                             </div>
-
                             <div className="row">
                                 <div className="activeInput col s6">
                                     <label htmlFor="hardness">hardness</label>
@@ -198,12 +196,10 @@ class CheeseList extends Component {
                                         type="text"
                                         name="hardness"
                                         onChange={this.handleChange}
-                                    // value={this.state.createdCheese.hardness}
                                     />
                                 </div>
 
                             </div>
-
                             <div className="row">
                                 <div className="activeInput col s6">
                                     <label htmlFor="price">price</label>
@@ -212,7 +208,6 @@ class CheeseList extends Component {
                                         type="text"
                                         name="price"
                                         onChange={this.handleChange}
-                                    // value={this.state.createdCheese.price}
                                     />
                                 </div>
 
@@ -226,7 +221,6 @@ class CheeseList extends Component {
                                         type="text"
                                         name="region"
                                         onChange={this.handleChange}
-                                    // value={this.state.createdCheese.region}
                                     />
                                 </div>
 
@@ -240,7 +234,6 @@ class CheeseList extends Component {
                                         type="text"
                                         name="purchaseLocation"
                                         onChange={this.handleChange}
-                                    // value={this.state.createdCheese.purchaseLocation}
                                     />
                                 </div>
 
@@ -254,7 +247,6 @@ class CheeseList extends Component {
                                         type="text"
                                         name="winePairing"
                                         onChange={this.handleChange}
-                                    // value={this.state.createdCheese.winePairing}
                                     />
                                 </div>
 
@@ -268,50 +260,39 @@ class CheeseList extends Component {
                                         type="text"
                                         name="image"
                                         onChange={this.handleChange}
-                                    // value={this.state.createdCheese.image}
                                     />
                                 </div>
 
                             </div>
-
-                            {/* <div className="row">
+                            <div className="row">
                                 <div className="activeInput col s6">
                                     <label htmlFor="buyAgain">buy again?</label>
-                                    <input
-                                        id="buyAgain"
-                                        type="text"
-                                        name="buyAgain"
-                                        onChange={this.handleChange}
-                                    // value={this.state.createdCheese.buyAgain}
-                                    />
+                                    <p>
+                                        <label>
+                                            <input
+                                                name="buyAgain"
+                                                type="radio"
+                                                value="yes"
+                                                // checked={this.state.savedCheese.buyAgain === "yes"}
+                                                onChange={this.handleChange}
+                                            />
+                                            <span>yes</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label>
+                                            <input
+                                                name="buyAgain"
+                                                type="radio"
+                                                value="no"
+                                                // checked={this.state.savedCheese.buyAgain === "no"}
+                                                onChange={this.handleChange}
+                                            />
+                                            <span>no</span>
+                                        </label>
+                                    </p>
                                 </div>
-
-                            </div> */}
-                            <label htmlFor="buyAgain">buy again?</label>
-                            <p>
-                                <label>
-                                    <input
-                                        name="buyAgain"
-                                        type="radio"
-                                        value="yes"
-                                        // checked={this.state.savedCheese.buyAgain === "yes"}
-                                        onChange={this.handleChange}
-                                    />
-                                    <span>yes</span>
-                                </label>
-                            </p>
-                            <p>
-                                <label>
-                                    <input
-                                        name="buyAgain"
-                                        type="radio"
-                                        value="no"
-                                        // checked={this.state.savedCheese.buyAgain === "no"}
-                                        onChange={this.handleChange}
-                                    />
-                                    <span>no</span>
-                                </label>
-                            </p>
+                            </div>
                             <button className="btn waves-effect waves-light" type="submit" name="action">add cheese</button>
                         </form>
                     </ContentWrapper>

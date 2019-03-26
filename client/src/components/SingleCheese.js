@@ -126,24 +126,18 @@ class SingleCheese extends Component {
                             <ContentWrapper>
                                 <h2>edit {this.state.savedCheese.cheeseName}</h2>
                                 <form onSubmit={this.updateCheese}>
-                                    <label htmlFor="cheeseName">cheese name</label>
-                                    <input
-                                        id="cheeseName"
-                                        type="text"
-                                        name="cheeseName"
-                                        onChange={this.handleChange}
-                                        value={this.state.savedCheese.cheeseName}
-                                    />
-                                    {/* <label htmlFor="type">type</label>
-                                    <input
-                                        id="type"
-                                        type="text"
-                                        name="type"
-                                        onChange={this.handleChange}
-                                        value={this.state.savedCheese.type}
-                                    /> */}
-
-
+                                    <div className="row">
+                                        <div className="activeInput col s6">
+                                            <label htmlFor="cheeseName">cheese name</label>
+                                            <input
+                                                id="cheeseName"
+                                                type="text"
+                                                name="cheeseName"
+                                                onChange={this.handleChange}
+                                                value={this.state.savedCheese.cheeseName}
+                                            />
+                                        </div>
+                                    </div>
                                     <div className="row">
                                         <div className="activeInput col s6">
                                             <label htmlFor="type">type</label>
@@ -197,112 +191,95 @@ class SingleCheese extends Component {
                                             </p>
                                         </div>
                                     </div>
-                                    <label htmlFor="hardness">hardness</label>
-                                    <input
-                                        id="hardness"
-                                        type="text"
-                                        name="hardness"
-                                        onChange={this.handleChange}
-                                        value={this.state.savedCheese.hardness}
-                                    />
-                                    <label htmlFor="price">price</label>
-                                    <input
-                                        id="price"
-                                        type="text"
-                                        name="price"
-                                        onChange={this.handleChange}
-                                        value={this.state.savedCheese.price}
-                                    />
-                                    <label htmlFor="region">region</label>
-                                    <input
-                                        id="region"
-                                        type="text"
-                                        name="region"
-                                        onChange={this.handleChange}
-                                        value={this.state.savedCheese.region}
-                                    />
-                                    <label htmlFor="purchaseLocation">purchased at</label>
-                                    <input
-                                        id="purchaseLocation"
-                                        type="text"
-                                        name="purchaseLocation"
-                                        onChange={this.handleChange}
-                                        value={this.state.savedCheese.purchaseLocation}
-                                    />
-                                    <label htmlFor="winePairing">paired with (drink)</label>
-                                    <input
-                                        id="winePairing"
-                                        type="text"
-                                        name="winePairing"
-                                        onChange={this.handleChange}
-                                        value={this.state.savedCheese.winePairing}
-                                    />
-                                    <label htmlFor="image">image link</label>
-                                    <input
-                                        id="image"
-                                        type="text"
-                                        name="image"
-                                        onChange={this.handleChange}
-                                        value={this.state.savedCheese.image}
-                                    />
-                                    {/* <label htmlFor="buyAgain">buy again?</label>
-                            <input
-                                id="buyAgain"
-                                type="text"
-                                name="buyAgain"
-                                onChange={this.handleChange}
-                                value={this.state.savedCheese.buyAgain}
-                            /> */}
-                                    {/* <div>
-                                        <label>
+                                    <div className="row">
+                                        <div className="activeInput col s6">
+                                            <label htmlFor="hardness">hardness</label>
                                             <input
-                                                type="radio"
-                                                name="buyAgain"
-                                                value="yes"
-                                                // checked={true}
-                                                checked
-                                                className="form-check-input"
+                                                id="hardness"
+                                                type="text"
+                                                name="hardness"
+                                                onChange={this.handleChange}
+                                                value={this.state.savedCheese.hardness}
                                             />
-                                            yes
-                                        </label>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <label>
+                                    <div className="row">
+                                        <div className="activeInput col s6">
+                                            <label htmlFor="region">region</label>
                                             <input
-                                                type="radio"
-                                                name="doNotBuyAgain"
-                                                value="no"
-                                                checked={true}
-                                                className="form-check-input"
-                                            />
-                                            no
-                                        </label>
-                                    </div> */}
-                                    <label htmlFor="buyAgain">buy again?</label>
-                                    <p>
-                                        <label>
-                                            <input
-                                                name="buyAgain"
-                                                type="radio"
-                                                value="yes"
-                                                checked={this.state.savedCheese.buyAgain === "yes"}
+                                                id="region"
+                                                type="text"
+                                                name="region"
                                                 onChange={this.handleChange}
+                                                value={this.state.savedCheese.region}
                                             />
-                                            <span>yes</span>
-                                        </label>
-                                    </p>
-                                    <p>
-                                        <label>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="activeInput col s6">
+                                            <label htmlFor="purchaseLocation">purchased at</label>
                                             <input
-                                                name="buyAgain"
-                                                type="radio"
-                                                value="no"
-                                                checked={this.state.savedCheese.buyAgain === "no"}
+                                                id="purchaseLocation"
+                                                type="text"
+                                                name="purchaseLocation"
                                                 onChange={this.handleChange}
+                                                value={this.state.savedCheese.purchaseLocation}
                                             />
-                                            <span>no</span>
-                                        </label>
-                                    </p>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="activeInput col s6">
+                                            <label htmlFor="winePairing">paired with (drink)</label>
+                                            <input
+                                                id="winePairing"
+                                                type="text"
+                                                name="winePairing"
+                                                onChange={this.handleChange}
+                                                value={this.state.savedCheese.winePairing}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="activeInput col s6">
+                                            <label htmlFor="image">image link</label>
+                                            <input
+                                                id="image"
+                                                type="text"
+                                                name="image"
+                                                onChange={this.handleChange}
+                                                value={this.state.savedCheese.image}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="activeInput col s6">
+                                            <label htmlFor="buyAgain">buy again?</label>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="buyAgain"
+                                                        type="radio"
+                                                        value="yes"
+                                                        checked={this.state.savedCheese.buyAgain === "yes"}
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>yes</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="buyAgain"
+                                                        type="radio"
+                                                        value="no"
+                                                        checked={this.state.savedCheese.buyAgain === "no"}
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>no</span>
+                                                </label>
+                                            </p>
+                                        </div>
+                                    </div>
                                     <button className="btn waves-effect waves-light" type="submit" name="action">update cheese</button>
                                 </form>
                                 <button className="btn waves-effect waves-light delete" type="submit" name="action" onClick={this.deleteCheese}>delete cheese</button>
