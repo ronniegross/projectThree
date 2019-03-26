@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import NavBar from './NavBar.js'
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios'
-import update from 'immutability-helper';
 import styled from 'styled-components'
 
 const TotalWrapper = styled.div`
@@ -19,7 +18,6 @@ const TotalWrapper = styled.div`
 `
 
 const ContentWrapper = styled.div`
-    /* width: 80%; */
     margin: 0 0 40px 40px;
     .btn {
         background-color: #FEFFA6;
@@ -48,19 +46,6 @@ class SingleCheese extends Component {
         redirectToCheeseList: false
     }
 
-
-    // componentDidMount = () => {
-    //     axios.get(`api/fromage/${this.props.match.params.userId}`).then(res => {
-    //         this.setState({
-    //             user: {
-    //                 _id: res.data._id,
-    //                 name: res.data.name,
-    //                 savedCheese: res.data.savedCheese,
-    //             }
-    //         })
-    //     })
-    // }
-
     componentDidMount = () => {
         axios.get(`/api/fromage/${this.props.match.params.userId}`).then(res => {
             const singleCheese = res.data.savedCheeses.filter(cheese => {
@@ -78,13 +63,6 @@ class SingleCheese extends Component {
             this.setState({ savedCheese: singleCheese[0] })
         })
     }
-
-    // handleChange = (event) => {
-    //     const clonedUser = { ...this.state }
-    //     clonedUser[event.target.name] = event.target.value
-    //     this.setState({ user: clonedUser})
-    // }
-
 
     handleChange = (event) => {
         const clonedCheese = { ...this.state.savedCheese }
@@ -105,9 +83,6 @@ class SingleCheese extends Component {
     }
 
     render() {
-        // console.log(this.props);
-        // console.log(this.state.savedCheese)
-        // display the one cheese on user where that cheese's id in the array on the user === this.props.match.params.cheeseId
         if (this.state.redirectToCheeseList === true) {
             return (<Redirect to={`/${this.props.match.params.userId}/cheeses`} />)
         }

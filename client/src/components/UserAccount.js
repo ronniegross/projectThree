@@ -38,7 +38,6 @@ const TotalWrapper = styled.div`
    }
 `
 
-
 export default class UserAccount extends Component {
     state = {
         user: {
@@ -94,7 +93,6 @@ export default class UserAccount extends Component {
                     />
                     <ContentWrapper>
                         <div>
-
                             <h3>user account page</h3>
                             <form onSubmit={this.handleUpdate}>
                                 <div className="row">

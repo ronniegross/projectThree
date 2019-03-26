@@ -320,7 +320,6 @@ class CheeseList extends Component {
                                                 onChange={this.handleChange}
                                             />
                                         </div>
-
                                     </div>
                                     <div className="row">
                                         <div className="activeInput col s6">
