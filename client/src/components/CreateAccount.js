@@ -27,6 +27,10 @@ const ContentWrapper = styled.div`
         border-bottom: 1px solid #FEFFA6;
         box-shadow: 0 1px 0 0 #FEFFA6;
    }
+    .input-field input[type=password]:focus {
+        border-bottom: 1px solid #FEFFA6;
+        box-shadow: 0 1px 0 0 #FEFFA6;
+    }
    .h2 {
        color: #282828
    }
