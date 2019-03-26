@@ -8,23 +8,9 @@ import UserAccount from './components/UserAccount.js'
 
 export default class App extends Component {
     render() {
-
-        // const UserComponent = () => (
-        //     <UserAccount
-        //         // user={this.props.match.userId}
-        //     />
-        // )
-
-        // const CheeseListComponent = () => (
-        //     <CheeseList 
-        //         cheeseInfo={this.props.match}
-        //     />
-        // )
-
         return (
             <Router>
                 <div>
-                    {/* <NavBar></NavBar> */}
                     <Switch>
                         <Route exact path="/" component={CreateAccount} />
                         <Route exact path="/:userId" component={UserAccount} />

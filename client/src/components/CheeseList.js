@@ -1,8 +1,29 @@
 import React, { Component } from 'react'
-import { Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import SingleCheese from './SingleCheese.js'
 import NavBar from './NavBar.js'
 import axios from 'axios'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+    /* width: 80%; */
+    margin: 0 0 40px 40px;
+    .btn {
+        background-color: #FEFFA6;
+        color: #282828;
+        margin: 5px 0 5px 0;
+    }
+    .btn.delete {
+        background-color: #FA7E7E;
+    }
+    .activeInput input[type=text]:focus {
+        border-bottom: 1px solid #FEFFA6;
+        box-shadow: 0 1px 0 0 #FEFFA6;
+   }
+    a {
+        color: tomato;
+    }
+`
 
 class CheeseList extends Component {
     state = {
@@ -23,6 +44,7 @@ class CheeseList extends Component {
                         user: {
                             _id: res.data._id,
                             name: res.data.name,
+                            // image: res.data.image,
                             savedCheeses: res.data.savedCheeses,
                         }
                     })
@@ -36,9 +58,9 @@ class CheeseList extends Component {
         const userId = this.props.match.params.userId
         axios.post(`/api/fromage/${userId}/cheeses`, { newCheese: this.state.createdCheese })
             .then(res => {
-                const clonedUser = { ...this.state.user}
+                const clonedUser = { ...this.state.user }
                 clonedUser.savedCheeses.push(res.data)
-                this.setState( {user: clonedUser, createdCheese: {}})
+                this.setState({ user: clonedUser, createdCheese: {} })
                 document.getElementById("cheese-form").reset()
                 // this.setState({ newCheeses: res.data })
             })
@@ -66,97 +88,152 @@ class CheeseList extends Component {
                 <NavBar
                     userId={this.props.match.params.userId}
                 />
-                <h1>cheese list</h1>
-                {
+                <Wrapper>
+                    <h3>cheese list</h3>
+                    {
 
-                    this.state.user.savedCheeses.map(cheese => {
-                        return (
-                            <div key={cheese._id}>
-                                <Link
-                                    to={`/${this.props.match.params.userId}/cheeses/${cheese._id}`}
-                                >
-                                    {cheese.cheeseName}
-                                </Link>
+                        this.state.user.savedCheeses.map(cheese => {
+                            return (
+                                <div key={cheese._id}>
+                                    <Link
+                                        to={`/${this.props.match.params.userId}/cheeses/${cheese._id}`}
+                                    >
+                                        {cheese.cheeseName}
+                                    </Link>
+                                </div>
+                            )
+                        })
+                    }
+                    <form onSubmit={this.handleCreateCheese} id="cheese-form">
+                        <h3>add new cheese</h3>
+                        <div className="row">
+                            <div className="activeInput col s6">
+                                <label htmlFor="cheeseName">cheese name</label>
+                                <input
+                                    id="cheeseName"
+                                    type="text"
+                                    name="cheeseName"
+                                    onChange={this.handleChange}
+                                // value={this.state.createdCheese.cheeseName}
+                                />
                             </div>
-                        )
-                    })
-                }
-                <form onSubmit={this.handleCreateCheese} id="cheese-form">
-                    <h2>add new cheese</h2>
-                    <label htmlFor="cheeseName">cheese name</label>
-                    <input
-                        id="cheeseName"
-                        type="text"
-                        name="cheeseName"
-                        onChange={this.handleChange}
-                        // value={this.state.createdCheese.cheeseName}
-                    />
-                    <label htmlFor="type">type</label>
-                    <input
-                        id="type"
-                        type="text"
-                        name="type"
-                        onChange={this.handleChange}
-                        // value={this.state.createdCheese.type}
-                    />
-                    <label htmlFor="hardness">hardness</label>
-                    <input
-                        id="hardness"
-                        type="text"
-                        name="hardness"
-                        onChange={this.handleChange}
-                        // value={this.state.createdCheese.hardness}
-                    />
-                    <label htmlFor="price">price</label>
-                    <input
-                        id="price"
-                        type="text"
-                        name="price"
-                        onChange={this.handleChange}
-                        // value={this.state.createdCheese.price}
-                    />
-                    <label htmlFor="region">region</label>
-                    <input
-                        id="region"
-                        type="text"
-                        name="region"
-                        onChange={this.handleChange}
-                        // value={this.state.createdCheese.region}
-                    />
-                    <label htmlFor="purchaseLocation">purchased at</label>
-                    <input
-                        id="purchaseLocation"
-                        type="text"
-                        name="purchaseLocation"
-                        onChange={this.handleChange}
-                        // value={this.state.createdCheese.purchaseLocation}
-                    />
-                    <label htmlFor="winePairing">paired with (drink)</label>
-                    <input
-                        id="winePairing"
-                        type="text"
-                        name="winePairing"
-                        onChange={this.handleChange}
-                        // value={this.state.createdCheese.winePairing}
-                    />
-                    <label htmlFor="image">image link</label>
-                    <input
-                        id="image"
-                        type="text"
-                        name="image"
-                        onChange={this.handleChange}
-                        // value={this.state.createdCheese.image}
-                    />
-                    <label htmlFor="buyAgain">buy again?</label>
-                    <input
-                        id="buyAgain"
-                        type="text"
-                        name="buyAgain"
-                        onChange={this.handleChange}
-                        // value={this.state.createdCheese.buyAgain}
-                    />
-                    <button>add cheese</button>
-                </form>
+                        </div>
+
+                        <div className="row">
+                            <div className="activeInput col s6">
+                                <label htmlFor="type">type</label>
+                                <input
+                                    id="type"
+                                    type="text"
+                                    name="type"
+                                    onChange={this.handleChange}
+                                // value={this.state.createdCheese.type}
+                                />
+                            </div>
+
+                        </div>
+
+                        <div className="row">
+                            <div className="activeInput col s6">
+                                <label htmlFor="hardness">hardness</label>
+                                <input
+                                    id="hardness"
+                                    type="text"
+                                    name="hardness"
+                                    onChange={this.handleChange}
+                                // value={this.state.createdCheese.hardness}
+                                />
+                            </div>
+
+                        </div>
+
+                        <div className="row">
+                            <div className="activeInput col s6">
+                                <label htmlFor="price">price</label>
+                                <input
+                                    id="price"
+                                    type="text"
+                                    name="price"
+                                    onChange={this.handleChange}
+                                // value={this.state.createdCheese.price}
+                                />
+                            </div>
+
+                        </div>
+
+                        <div className="row">
+                            <div className="activeInput col s6">
+                                <label htmlFor="region">region</label>
+                                <input
+                                    id="region"
+                                    type="text"
+                                    name="region"
+                                    onChange={this.handleChange}
+                                // value={this.state.createdCheese.region}
+                                />
+                            </div>
+
+                        </div>
+
+                        <div className="row">
+                            <div className="activeInput col s6">
+                                <label htmlFor="purchaseLocation">purchased at</label>
+                                <input
+                                    id="purchaseLocation"
+                                    type="text"
+                                    name="purchaseLocation"
+                                    onChange={this.handleChange}
+                                // value={this.state.createdCheese.purchaseLocation}
+                                />
+                            </div>
+
+                        </div>
+
+                        <div className="row">
+                            <div className="activeInput col s6">
+                                <label htmlFor="winePairing">paired with (drink)</label>
+                                <input
+                                    id="winePairing"
+                                    type="text"
+                                    name="winePairing"
+                                    onChange={this.handleChange}
+                                // value={this.state.createdCheese.winePairing}
+                                />
+                            </div>
+
+                        </div>
+
+                        <div className="row">
+                            <div className="activeInput col s6">
+                                <label htmlFor="image">image link</label>
+                                <input
+                                    id="image"
+                                    type="text"
+                                    name="image"
+                                    onChange={this.handleChange}
+                                // value={this.state.createdCheese.image}
+                                />
+                            </div>
+
+                        </div>
+
+                        <div className="row">
+                            <div className="activeInput col s6">
+                                <label htmlFor="buyAgain">buy again?</label>
+                                <input
+                                    id="buyAgain"
+                                    type="text"
+                                    name="buyAgain"
+                                    onChange={this.handleChange}
+                                // value={this.state.createdCheese.buyAgain}
+                                />
+                            </div>
+
+                        </div>
+
+                        <button className="btn waves-effect waves-light" type="submit" name="action">add cheese</button>
+                    </form>
+                </Wrapper>
             </div>
         )
     }

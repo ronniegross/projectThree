@@ -170,14 +170,38 @@ class SingleCheese extends Component {
                                 onChange={this.handleChange}
                                 value={this.state.savedCheese.image}
                             />
-                            <label htmlFor="buyAgain">buy again?</label>
+                            {/* <label htmlFor="buyAgain">buy again?</label>
                             <input
                                 id="buyAgain"
                                 type="text"
                                 name="buyAgain"
                                 onChange={this.handleChange}
                                 value={this.state.savedCheese.buyAgain}
-                            />
+                            /> */}
+                            <div>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="buyAgain"
+                                        value="yes"
+                                        checked={true}
+                                        className="form-check-input"
+                                    />
+                                    Yes
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="doNotBuyAgain"
+                                        value="no"
+                                        checked={true}
+                                        className="form-check-input"
+                                    />
+                                    no
+                                </label>
+                            </div>
                             <button>update cheese</button>
                         </form>
                     </div>

@@ -2,6 +2,26 @@ import React, { Component } from 'react'
 import NavBar from './NavBar.js'
 import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios'
+import styled from 'styled-components'
+
+
+const Wrapper = styled.div`
+    /* width: 80%; */
+    margin: 0 0 40px 40px;
+    .btn {
+        background-color: #FEFFA6;
+        color: #282828;
+        margin: 5px 0 5px 0;
+    }
+    .btn.delete {
+        background-color: #FA7E7E;
+    }
+    .activeInput input[type=text]:focus {
+        border-bottom: 1px solid #FEFFA6;
+        box-shadow: 0 1px 0 0 #FEFFA6;
+   }
+`
+
 
 export default class UserAccount extends Component {
     state = {
@@ -25,7 +45,7 @@ export default class UserAccount extends Component {
             // console.log(res.data)
             // const currentUser = {...this.state.user}
             // this.setState({ user: currentUser })
-        // axios.get(`/api/fromage/`).then(res => {
+            // axios.get(`/api/fromage/`).then(res => {
             this.setState({ user: res.data })
         })
     }
@@ -46,56 +66,74 @@ export default class UserAccount extends Component {
     handleChange = (event) => {
         const clonedUser = { ...this.state.user }
         clonedUser[event.target.name] = event.target.value
-        this.setState({ user: clonedUser})
+        this.setState({ user: clonedUser })
     }
 
     deleteUser = (event) => {
         event.preventDefault()
         axios.delete(`/api/fromage/${this.props.match.params.userId}`).then(res => {
-            this.setState({redirectToSignUp: true})
+            this.setState({ redirectToSignUp: true })
         })
-    } 
+    }
 
     render() {
         // console.log(this.props.match)
-        if (this.state.redirectToSignUp === true ) {
-            return(<Redirect to="/" />)
+        if (this.state.redirectToSignUp === true) {
+            return (<Redirect to="/" />)
         }
         return (
             <div>
-                <NavBar 
+                <NavBar
                     userId={this.props.match.params.userId}
                 />
-                <h1>user account page</h1>
-                <form onSubmit={this.handleUpdate}>
-                    <label htmlFor="name">name</label>
-                    <input
-                        id="name"
-                        type="text"
-                        name="name"
-                        onChange={this.handleChange}
-                        value={this.state.user.name}
-                    />
-                    <label htmlFor="email">email</label>
-                    <input
-                        id="email"
-                        type="text"
-                        name="email"
-                        onChange={this.handleChange}
-                        value={this.state.user.email}
-                    />
-                    <label htmlFor="password">password</label>
-                    <input
-                        id="password"
-                        type="text"
-                        name="password"
-                        onChange={this.handleChange}
-                        value={this.state.user.password}
-                    />
-                    <button>update user information</button>
-                </form>
-                <button onClick={this.deleteUser}>delete user</button>
+                <Wrapper>
+                    <div>
+
+                        <h3>user account page</h3>
+                        <form onSubmit={this.handleUpdate}>
+                            <div className="row">
+                                <div className="activeInput col s6">
+                                    <label htmlFor="name">name</label>
+                                    <input
+                                        id="name"
+                                        type="text"
+                                        name="name"
+                                        onChange={this.handleChange}
+                                        value={this.state.user.name}
+                                    />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="activeInput col s6">
+                                    <label htmlFor="email">email</label>
+                                    <input
+                                        id="email"
+                                        type="text"
+                                        name="email"
+                                        onChange={this.handleChange}
+                                        value={this.state.user.email}
+                                    />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="activeInput col s6">
+                                    <label htmlFor="password">password</label>
+                                    <input
+                                        id="password"
+                                        type="text"
+                                        name="password"
+                                        onChange={this.handleChange}
+                                        value={this.state.user.password}
+                                    />
+                                </div>
+                            </div>
+                            <button className="btn waves-effect waves-light" type="submit" name="action">update user information</button>
+                        </form>
+                        <button className="btn waves-effect waves-light delete" type="submit" name="action" onClick={this.deleteUser}>delete user</button>
+                    </div>
+                </Wrapper>
             </div>
+
         )
     }
 }
