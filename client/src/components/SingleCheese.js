@@ -134,14 +134,69 @@ class SingleCheese extends Component {
                                         onChange={this.handleChange}
                                         value={this.state.savedCheese.cheeseName}
                                     />
-                                    <label htmlFor="type">type</label>
+                                    {/* <label htmlFor="type">type</label>
                                     <input
                                         id="type"
                                         type="text"
                                         name="type"
                                         onChange={this.handleChange}
                                         value={this.state.savedCheese.type}
-                                    />
+                                    /> */}
+
+
+                                    <div className="row">
+                                        <div className="activeInput col s6">
+                                            <label htmlFor="type">type</label>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="type"
+                                                        type="radio"
+                                                        value="cow"
+                                                        checked={this.state.savedCheese.type === "cow"}
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>cow</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="type"
+                                                        type="radio"
+                                                        value="goat"
+                                                        checked={this.state.savedCheese.type === "goat"}
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>goat</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="type"
+                                                        type="radio"
+                                                        value="sheep"
+                                                        checked={this.state.savedCheese.type === "sheep"}
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>sheep</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="type"
+                                                        type="radio"
+                                                        value="other"
+                                                        checked={this.state.savedCheese.type === "other"}
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>other</span>
+                                                </label>
+                                            </p>
+                                        </div>
+                                    </div>
                                     <label htmlFor="hardness">hardness</label>
                                     <input
                                         id="hardness"
@@ -226,10 +281,10 @@ class SingleCheese extends Component {
                                     <label htmlFor="buyAgain">buy again?</label>
                                     <p>
                                         <label>
-                                            <input 
-                                                name="buyAgain" 
-                                                type="radio"        
-                                                value="yes"      
+                                            <input
+                                                name="buyAgain"
+                                                type="radio"
+                                                value="yes"
                                                 checked={this.state.savedCheese.buyAgain === "yes"}
                                                 onChange={this.handleChange}
                                             />
@@ -238,10 +293,10 @@ class SingleCheese extends Component {
                                     </p>
                                     <p>
                                         <label>
-                                            <input 
-                                                name="buyAgain" 
-                                                type="radio" 
-                                                value="no"  
+                                            <input
+                                                name="buyAgain"
+                                                type="radio"
+                                                value="no"
                                                 checked={this.state.savedCheese.buyAgain === "no"}
                                                 onChange={this.handleChange}
                                             />
