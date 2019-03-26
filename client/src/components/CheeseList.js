@@ -234,7 +234,7 @@ class CheeseList extends Component {
 
                             </div>
 
-                            <div className="row">
+                            {/* <div className="row">
                                 <div className="activeInput col s6">
                                     <label htmlFor="buyAgain">buy again?</label>
                                     <input
@@ -246,8 +246,32 @@ class CheeseList extends Component {
                                     />
                                 </div>
 
-                            </div>
-
+                            </div> */}
+                            <label htmlFor="buyAgain">buy again?</label>
+                            <p>
+                                <label>
+                                    <input
+                                        name="buyAgain"
+                                        type="radio"
+                                        value="yes"
+                                        // checked={this.state.savedCheese.buyAgain === "yes"}
+                                        onChange={this.handleChange}
+                                    />
+                                    <span>yes</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input
+                                        name="buyAgain"
+                                        type="radio"
+                                        value="no"
+                                        // checked={this.state.savedCheese.buyAgain === "no"}
+                                        onChange={this.handleChange}
+                                    />
+                                    <span>no</span>
+                                </label>
+                            </p>
                             <button className="btn waves-effect waves-light" type="submit" name="action">add cheese</button>
                         </form>
                     </ContentWrapper>

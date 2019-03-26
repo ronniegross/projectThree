@@ -10,7 +10,7 @@ const CheeseSchema = new Schema ({
     purchaseLocation: String,
     winePairing: String,
     image: String,
-    buyAgain: Boolean
+    buyAgain: String
 })
 
 const UserSchema = new Schema ({

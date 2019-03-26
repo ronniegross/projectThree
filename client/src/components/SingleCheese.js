@@ -198,17 +198,18 @@ class SingleCheese extends Component {
                                 onChange={this.handleChange}
                                 value={this.state.savedCheese.buyAgain}
                             /> */}
-                                    <div>
+                                    {/* <div>
                                         <label>
                                             <input
                                                 type="radio"
                                                 name="buyAgain"
                                                 value="yes"
-                                                checked={true}
+                                                // checked={true}
+                                                checked
                                                 className="form-check-input"
                                             />
-                                            Yes
-                                </label>
+                                            yes
+                                        </label>
                                     </div>
                                     <div>
                                         <label>
@@ -220,8 +221,33 @@ class SingleCheese extends Component {
                                                 className="form-check-input"
                                             />
                                             no
-                                </label>
-                                    </div>
+                                        </label>
+                                    </div> */}
+                                    <label htmlFor="buyAgain">buy again?</label>
+                                    <p>
+                                        <label>
+                                            <input 
+                                                name="buyAgain" 
+                                                type="radio"        
+                                                value="yes"      
+                                                checked={this.state.savedCheese.buyAgain === "yes"}
+                                                onChange={this.handleChange}
+                                            />
+                                            <span>yes</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label>
+                                            <input 
+                                                name="buyAgain" 
+                                                type="radio" 
+                                                value="no"  
+                                                checked={this.state.savedCheese.buyAgain === "no"}
+                                                onChange={this.handleChange}
+                                            />
+                                            <span>no</span>
+                                        </label>
+                                    </p>
                                     <button className="btn waves-effect waves-light" type="submit" name="action">update cheese</button>
                                 </form>
                                 <button className="btn waves-effect waves-light delete" type="submit" name="action" onClick={this.deleteCheese}>delete cheese</button>
