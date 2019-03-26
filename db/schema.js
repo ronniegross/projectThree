@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const CheeseSchema = new Schema ({
     cheeseName: String,
     type: String,
-    hardness: String,
+    firmness: String,
     price: Number,
     region: String,
     purchaseLocation: String,

@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import NavBar from './NavBar.js'
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios'
 import styled from 'styled-components'
 
 
 const ContentWrapper = styled.div`
-    /* width: 80%; */
     margin: 0 0 40px 40px;
     .btn {
         background-color: #FEFFA6;
@@ -48,18 +47,8 @@ export default class UserAccount extends Component {
         redirectToSignUp: false
     }
 
-    // currentUser = () => {
-    //     const currentUser = {...this.state.user}
-    //     this.setState({ user: currentUser })
-    // }
-
-
     componentDidMount = () => {
         axios.get(`/api/fromage/${this.props.match.params.userId}`).then(res => {
-            // console.log(res.data)
-            // const currentUser = {...this.state.user}
-            // this.setState({ user: currentUser })
-            // axios.get(`/api/fromage/`).then(res => {
             this.setState({ user: res.data })
         })
     }
@@ -67,9 +56,6 @@ export default class UserAccount extends Component {
 
     updateUser = () => {
         axios.put(`/api/fromage/${this.props.match.params.userId}`, { user: this.state.user })
-            .then(res => {
-                // this.setState({ user: res.data })
-            })
     }
 
     handleUpdate = (event) => {
@@ -91,7 +77,6 @@ export default class UserAccount extends Component {
     }
 
     render() {
-        // console.log(this.props.match)
         if (this.state.redirectToSignUp === true) {
             return (<Redirect to="/" />)
         }

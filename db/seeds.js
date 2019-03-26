@@ -7,7 +7,7 @@ const Cheese = require('../models/Cheese.js')
 const chevre = new Cheese({
     cheeseName: "Trader Joes Chevre",
     type: "Goat",
-    hardness: "Soft",
+    firmness: "Soft",
     price: 4.99,
     region: "North America",
     purchaseLocation: "Trader Joes",
@@ -19,7 +19,7 @@ const chevre = new Cheese({
 const manchego = new Cheese({
     cheeseName: "Manchego Aged 12 Months",
     type: "Sheep",
-    hardness: "Hard",
+    firmness: "Hard",
     price: 9.99,
     region: "Spain",
     purchaseLocation: "Whole Foods",

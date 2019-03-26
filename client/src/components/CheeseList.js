@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import SingleCheese from './SingleCheese.js'
 import NavBar from './NavBar.js'
 import axios from 'axios'
 import styled from 'styled-components'
@@ -19,7 +18,6 @@ const TotalWrapper = styled.div`
 `
 
 const ContentWrapper = styled.div`
-    /* width: 80%; */
     margin: 0 0 40px 40px;
     .btn {
         background-color: #FEFFA6;
@@ -39,6 +37,13 @@ const ContentWrapper = styled.div`
     .addCheese {
         margin-top: 20px;
     }
+    .cheeseBox {
+        display: flex;
+        flex-direction: column;
+    }
+    .cheesePic {
+        width: 300px;
+    }
 `
 
 class CheeseList extends Component {
@@ -54,18 +59,15 @@ class CheeseList extends Component {
 
     componentDidMount = () => {
         if (this.props) {
-            // console.log(this.props.match.params)
             axios.get(`/api/fromage/${this.props.match.params.userId}`)
                 .then(res => {
                     this.setState({
                         user: {
                             _id: res.data._id,
                             name: res.data.name,
-                            // image: res.data.image,
                             savedCheeses: res.data.savedCheeses,
                         }
                     })
-                    // console.log(res.data.savedCheeses)
                 })
 
         }
@@ -79,7 +81,6 @@ class CheeseList extends Component {
                 clonedUser.savedCheeses.push(res.data)
                 this.setState({ user: clonedUser, createdCheese: {} })
                 document.getElementById("cheese-form").reset()
-                // this.setState({ newCheeses: res.data })
             })
     }
 
@@ -96,16 +97,12 @@ class CheeseList extends Component {
 
     toggleCheeseForm = () => {
         this.setState((state, props) => {
-            return ({isCheeseFormDisplayed : !state.isCheeseFormDisplayed})
+            return ({ isCheeseFormDisplayed: !state.isCheeseFormDisplayed })
         })
     }
 
 
     render() {
-        // console.log(this.state)
-        // if (this.state.redirectToCheeseList === true) {
-        //     return (<Redirect to={`/${this.props.match.params.userId}/cheeses`} />)
-        // }
         return (
             <div>
                 <TotalWrapper>
@@ -125,7 +122,10 @@ class CheeseList extends Component {
                                         <Link
                                             to={`/${this.props.match.params.userId}/cheeses/${cheese._id}`}
                                         >
-                                            {cheese.cheeseName}
+                                            <div className="cheeseBox">
+                                                {cheese.cheeseName}
+                                                <img className="cheesePic" src={cheese.image} alt="cheese pic" />
+                                            </div>
                                         </Link>
                                     </div>
                                 )
@@ -134,176 +134,223 @@ class CheeseList extends Component {
                         <button onClick={this.toggleCheeseForm} className="btn waves-effect waves-light addCheese" type="submit" name="action">add a new cheese</button>
                         {
                             this.state.isCheeseFormDisplayed
-                            ? <form onSubmit={this.handleCreateCheese} id="cheese-form">
-                            <h3>add a new cheese</h3>
-                            <div className="row">
-                                <div className="activeInput col s6">
-                                    <label htmlFor="cheeseName">cheese name</label>
-                                    <input
-                                        id="cheeseName"
-                                        type="text"
-                                        name="cheeseName"
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="activeInput col s6">
-                                    <label htmlFor="type">type</label>
-                                    <p>
-                                        <label>
+                                ? <form onSubmit={this.handleCreateCheese} id="cheese-form">
+                                    <h3>add a new cheese</h3>
+                                    <div className="row">
+                                        <div className="activeInput col s6">
+                                            <label htmlFor="cheeseName">cheese name</label>
                                             <input
-                                                name="type"
-                                                type="radio"
-                                                value="cow"
+                                                id="cheeseName"
+                                                type="text"
+                                                name="cheeseName"
                                                 onChange={this.handleChange}
                                             />
-                                            <span>cow</span>
-                                        </label>
-                                    </p>
-                                    <p>
-                                        <label>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="activeInput col s6">
+                                            <label htmlFor="type">type</label>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="type"
+                                                        type="radio"
+                                                        value="cow"
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>cow</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="type"
+                                                        type="radio"
+                                                        value="goat"
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>goat</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="type"
+                                                        type="radio"
+                                                        value="sheep"
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>sheep</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="type"
+                                                        type="radio"
+                                                        value="other"
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>other</span>
+                                                </label>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="activeInput col s6">
+                                            <label htmlFor="firmness">firmness</label>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="firmness"
+                                                        type="radio"
+                                                        value="fresh"
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>fresh</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="firmness"
+                                                        type="radio"
+                                                        value="soft"
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>soft</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="firmness"
+                                                        type="radio"
+                                                        value="semi-firm"
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>semi-firm</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="firmness"
+                                                        type="radio"
+                                                        value="firm"
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>firm</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="firmness"
+                                                        type="radio"
+                                                        value="blue"
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>blue</span>
+                                                </label>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="row">
+                                        <div className="activeInput col s6">
+                                            <label htmlFor="price">price</label>
                                             <input
-                                                name="type"
-                                                type="radio"
-                                                value="goat"
+                                                id="price"
+                                                type="text"
+                                                name="price"
                                                 onChange={this.handleChange}
                                             />
-                                            <span>goat</span>
-                                        </label>
-                                    </p>
-                                    <p>
-                                        <label>
+                                        </div>
+
+                                    </div>
+
+                                    <div className="row">
+                                        <div className="activeInput col s6">
+                                            <label htmlFor="region">region</label>
                                             <input
-                                                name="type"
-                                                type="radio"
-                                                value="sheep"
+                                                id="region"
+                                                type="text"
+                                                name="region"
                                                 onChange={this.handleChange}
                                             />
-                                            <span>sheep</span>
-                                        </label>
-                                    </p>
-                                    <p>
-                                        <label>
+                                        </div>
+
+                                    </div>
+
+                                    <div className="row">
+                                        <div className="activeInput col s6">
+                                            <label htmlFor="purchaseLocation">purchased at</label>
                                             <input
-                                                name="type"
-                                                type="radio"
-                                                value="other"
+                                                id="purchaseLocation"
+                                                type="text"
+                                                name="purchaseLocation"
                                                 onChange={this.handleChange}
                                             />
-                                            <span>other</span>
-                                        </label>
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="activeInput col s6">
-                                    <label htmlFor="hardness">hardness</label>
-                                    <input
-                                        id="hardness"
-                                        type="text"
-                                        name="hardness"
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
+                                        </div>
 
-                            </div>
-                            <div className="row">
-                                <div className="activeInput col s6">
-                                    <label htmlFor="price">price</label>
-                                    <input
-                                        id="price"
-                                        type="text"
-                                        name="price"
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
+                                    </div>
 
-                            </div>
-
-                            <div className="row">
-                                <div className="activeInput col s6">
-                                    <label htmlFor="region">region</label>
-                                    <input
-                                        id="region"
-                                        type="text"
-                                        name="region"
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-
-                            </div>
-
-                            <div className="row">
-                                <div className="activeInput col s6">
-                                    <label htmlFor="purchaseLocation">purchased at</label>
-                                    <input
-                                        id="purchaseLocation"
-                                        type="text"
-                                        name="purchaseLocation"
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-
-                            </div>
-
-                            <div className="row">
-                                <div className="activeInput col s6">
-                                    <label htmlFor="winePairing">paired with</label>
-                                    <input
-                                        id="winePairing"
-                                        type="text"
-                                        name="winePairing"
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-
-                            </div>
-
-                            <div className="row">
-                                <div className="activeInput col s6">
-                                    <label htmlFor="image">image link</label>
-                                    <input
-                                        id="image"
-                                        type="text"
-                                        name="image"
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-
-                            </div>
-                            <div className="row">
-                                <div className="activeInput col s6">
-                                    <label htmlFor="buyAgain">buy again?</label>
-                                    <p>
-                                        <label>
+                                    <div className="row">
+                                        <div className="activeInput col s6">
+                                            <label htmlFor="pairedWith">paired with</label>
                                             <input
-                                                name="buyAgain"
-                                                type="radio"
-                                                value="yes"
-                                                // checked={this.state.savedCheese.buyAgain === "yes"}
+                                                id="pairedWith"
+                                                type="text"
+                                                name="pairedWith"
                                                 onChange={this.handleChange}
                                             />
-                                            <span>yes</span>
-                                        </label>
-                                    </p>
-                                    <p>
-                                        <label>
+                                        </div>
+
+                                    </div>
+
+                                    <div className="row">
+                                        <div className="activeInput col s6">
+                                            <label htmlFor="image">image link</label>
                                             <input
-                                                name="buyAgain"
-                                                type="radio"
-                                                value="no"
-                                                // checked={this.state.savedCheese.buyAgain === "no"}
+                                                id="image"
+                                                type="text"
+                                                name="image"
                                                 onChange={this.handleChange}
                                             />
-                                            <span>no</span>
-                                        </label>
-                                    </p>
-                                </div>
-                            </div>
-                            <button className="btn waves-effect waves-light" type="submit" name="action">add cheese</button>
-                        </form>
-                        : null
+                                        </div>
+
+                                    </div>
+                                    <div className="row">
+                                        <div className="activeInput col s6">
+                                            <label htmlFor="buyAgain">buy again?</label>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="buyAgain"
+                                                        type="radio"
+                                                        value="yes"
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>yes</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="buyAgain"
+                                                        type="radio"
+                                                        value="no"
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>no</span>
+                                                </label>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <button className="btn waves-effect waves-light" type="submit" name="action">add cheese</button>
+                                </form>
+                                : null
                         }
                     </ContentWrapper>
                 </TotalWrapper>

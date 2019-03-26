@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect, Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 
@@ -16,19 +16,13 @@ const TotalWrapper = styled.div`
 `
 
 const ContentWrapper = styled.div`
-    /* width: 80%; */
     margin: 0 0 40px 40px;
     display: flex;
     flex-direction: column;
-    /* display: flex; */
-    /* flex-direction: column; */
     .btn {
         background-color: #FEFFA6;
         color: #282828;
     }
-    /* .input-field input[type=text]:focus + label {
-        color: #000; */
-    /* } */
     .input-field input[type=text]:focus {
         border-bottom: 1px solid #FEFFA6;
         box-shadow: 0 1px 0 0 #FEFFA6;
@@ -36,9 +30,6 @@ const ContentWrapper = styled.div`
    .h2 {
        color: #282828
    }
-   /* .waves-effect.waves-teal .waves-ripple {
-        background-color: white;
-   } */
 `
 
 export default class CreateAccount extends Component {
@@ -88,7 +79,6 @@ export default class CreateAccount extends Component {
                     <img src="https://i.imgur.com/srOPLeg.png" alt="fromage" class="fromageLogo"></img>
                 </div>
                 <ContentWrapper>
-                    {/* <div class="row"> */}
                     <div>
                         <h3>create account</h3>
                         <form onSubmit={this.handleSignUp}>

@@ -193,14 +193,67 @@ class SingleCheese extends Component {
                                     </div>
                                     <div className="row">
                                         <div className="activeInput col s6">
-                                            <label htmlFor="hardness">hardness</label>
-                                            <input
-                                                id="hardness"
-                                                type="text"
-                                                name="hardness"
-                                                onChange={this.handleChange}
-                                                value={this.state.savedCheese.hardness}
-                                            />
+                                            <label htmlFor="firmness">firmness</label>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="firmness"
+                                                        type="radio"
+                                                        value="fresh"
+                                                        checked={this.state.savedCheese.firmness === "fresh"}
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>fresh</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="firmness"
+                                                        type="radio"
+                                                        value="soft"
+                                                        checked={this.state.savedCheese.firmness === "soft"}
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>soft</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="firmness"
+                                                        type="radio"
+                                                        value="semi-firm"
+                                                        checked={this.state.savedCheese.firmness === "semi-firm"}
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>semi-firm</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="firmness"
+                                                        type="radio"
+                                                        value="firm"
+                                                        checked={this.state.savedCheese.firmness === "firm"}
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>firm</span>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>
+                                                    <input
+                                                        name="firmness"
+                                                        type="radio"
+                                                        value="blue"
+                                                        checked={this.state.savedCheese.firmness === "blue"}
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>blue</span>
+                                                </label>
+                                            </p>
                                         </div>
                                     </div>
                                     <div className="row">
@@ -229,13 +282,13 @@ class SingleCheese extends Component {
                                     </div>
                                     <div className="row">
                                         <div className="activeInput col s6">
-                                            <label htmlFor="winePairing">paired with</label>
+                                            <label htmlFor="pairedWith">paired with</label>
                                             <input
-                                                id="winePairing"
+                                                id="pairedWith"
                                                 type="text"
-                                                name="winePairing"
+                                                name="pairedWith"
                                                 onChange={this.handleChange}
-                                                value={this.state.savedCheese.winePairing}
+                                                value={this.state.savedCheese.pairedWith}
                                             />
                                         </div>
                                     </div>
