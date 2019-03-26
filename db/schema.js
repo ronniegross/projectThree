@@ -8,7 +8,7 @@ const CheeseSchema = new Schema ({
     price: Number,
     region: String,
     purchaseLocation: String,
-    winePairing: String,
+    pairedWith: String,
     image: String,
     buyAgain: String
 })

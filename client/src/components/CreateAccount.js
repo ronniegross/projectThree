@@ -121,7 +121,7 @@ export default class CreateAccount extends Component {
                                     <label htmlFor="password">password</label>
                                     <input
                                         id="password"
-                                        type="text"
+                                        type="password"
                                         name="password"
                                         onChange={this.handleChange}
                                         value={this.state.createdUser.password}

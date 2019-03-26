@@ -229,7 +229,7 @@ class SingleCheese extends Component {
                                     </div>
                                     <div className="row">
                                         <div className="activeInput col s6">
-                                            <label htmlFor="winePairing">paired with (drink)</label>
+                                            <label htmlFor="winePairing">paired with</label>
                                             <input
                                                 id="winePairing"
                                                 type="text"

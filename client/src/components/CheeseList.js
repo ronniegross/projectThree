@@ -36,6 +36,9 @@ const ContentWrapper = styled.div`
     a {
         color: tomato;
     }
+    .addCheese {
+        margin-top: 20px;
+    }
 `
 
 class CheeseList extends Component {
@@ -44,7 +47,8 @@ class CheeseList extends Component {
             name: '',
             savedCheeses: []
         },
-        createdCheese: {}
+        createdCheese: {},
+        isCheeseFormDisplayed: false
     }
 
 
@@ -90,6 +94,12 @@ class CheeseList extends Component {
         this.setState({ createdCheese: clonedCreatedCheese })
     }
 
+    toggleCheeseForm = () => {
+        this.setState((state, props) => {
+            return ({isCheeseFormDisplayed : !state.isCheeseFormDisplayed})
+        })
+    }
+
 
     render() {
         // console.log(this.state)
@@ -121,8 +131,11 @@ class CheeseList extends Component {
                                 )
                             })
                         }
-                        <form onSubmit={this.handleCreateCheese} id="cheese-form">
-                            <h3>add new cheese</h3>
+                        <button onClick={this.toggleCheeseForm} className="btn waves-effect waves-light addCheese" type="submit" name="action">add a new cheese</button>
+                        {
+                            this.state.isCheeseFormDisplayed
+                            ? <form onSubmit={this.handleCreateCheese} id="cheese-form">
+                            <h3>add a new cheese</h3>
                             <div className="row">
                                 <div className="activeInput col s6">
                                     <label htmlFor="cheeseName">cheese name</label>
@@ -131,7 +144,6 @@ class CheeseList extends Component {
                                         type="text"
                                         name="cheeseName"
                                         onChange={this.handleChange}
-                                    // value={this.state.createdCheese.cheeseName}
                                     />
                                 </div>
                             </div>
@@ -144,7 +156,6 @@ class CheeseList extends Component {
                                                 name="type"
                                                 type="radio"
                                                 value="cow"
-                                                // checked={this.state.savedCheese.buyAgain === "yes"}
                                                 onChange={this.handleChange}
                                             />
                                             <span>cow</span>
@@ -156,7 +167,6 @@ class CheeseList extends Component {
                                                 name="type"
                                                 type="radio"
                                                 value="goat"
-                                                // checked={this.state.savedCheese.buyAgain === "no"}
                                                 onChange={this.handleChange}
                                             />
                                             <span>goat</span>
@@ -168,7 +178,6 @@ class CheeseList extends Component {
                                                 name="type"
                                                 type="radio"
                                                 value="sheep"
-                                                // checked={this.state.savedCheese.buyAgain === "no"}
                                                 onChange={this.handleChange}
                                             />
                                             <span>sheep</span>
@@ -180,7 +189,6 @@ class CheeseList extends Component {
                                                 name="type"
                                                 type="radio"
                                                 value="other"
-                                                // checked={this.state.savedCheese.buyAgain === "no"}
                                                 onChange={this.handleChange}
                                             />
                                             <span>other</span>
@@ -241,7 +249,7 @@ class CheeseList extends Component {
 
                             <div className="row">
                                 <div className="activeInput col s6">
-                                    <label htmlFor="winePairing">paired with (drink)</label>
+                                    <label htmlFor="winePairing">paired with</label>
                                     <input
                                         id="winePairing"
                                         type="text"
@@ -295,6 +303,8 @@ class CheeseList extends Component {
                             </div>
                             <button className="btn waves-effect waves-light" type="submit" name="action">add cheese</button>
                         </form>
+                        : null
+                        }
                     </ContentWrapper>
                 </TotalWrapper>
             </div>

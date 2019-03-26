@@ -11,7 +11,7 @@ const chevre = new Cheese({
     price: 4.99,
     region: "North America",
     purchaseLocation: "Trader Joes",
-    winePairing: "Carnivore Cab Sav",
+    pairedWith: "Carnivore Cab Sav",
     image: "https://everyfoodfits.com/wp-content/uploads/2011/11/Trader-Joes-Favorite-Products-2.jpg",
     buyAgain: "yes"
 })
@@ -23,7 +23,7 @@ const manchego = new Cheese({
     price: 9.99,
     region: "Spain",
     purchaseLocation: "Whole Foods",
-    winePairing: "14 Hands Merlot",
+    pairedWith: "14 Hands Merlot",
     image: "https://d2lnr5mha7bycj.cloudfront.net/product-image/file/large_a94ba795-a227-4da8-8024-c588282b2167.jpg",
     buyAgain: "yes"
 })
