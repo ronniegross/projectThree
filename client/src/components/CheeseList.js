@@ -81,6 +81,7 @@ class CheeseList extends Component {
                 clonedUser.savedCheeses.push(res.data)
                 this.setState({ user: clonedUser, createdCheese: {} })
                 document.getElementById("cheese-form").reset()
+                this.toggleCheeseForm()
             })
     }
 
