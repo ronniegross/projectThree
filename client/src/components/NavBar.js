@@ -21,7 +21,7 @@ class NavBar extends Component {
                 <Wrapper>
                     <nav>
                         <div className="nav-wrapper">
-                            <ul id="nav-mobile" className="left hide-on-med-and-down">
+                            <ul className="left hide-on-med-and-down">
                                 <li><Link to={`/${this.props.userId}/cheeses`}> cheese list </Link></li>
                                 <li><Link to={`/${this.props.userId}`}> account info </Link></li>
                             </ul>
